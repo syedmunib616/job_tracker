@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:job_tracker/Screen/add_job.dart';
+import 'Screen/Login.dart';
 import 'Screen/dashbord.dart';
 import 'Screen/job_detail_screen.dart';
 import 'Screen/job_list_screen.dart';
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
         "/detail":(context)=>JobDetailScreen(),
         "/addjob": (context)=> AddJob()
       },
-      // home: Dashbord(),
-
-      //home: JobListScreen(),
+      //  home: Dashbord(),
+      //
+      // home: LoginScreen(),
     );
   }
 
