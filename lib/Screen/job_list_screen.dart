@@ -30,6 +30,12 @@ class JobListScreen extends StatelessWidget {
         },
 
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: (){
+            Navigator.pushNamed(context, "/addjob");
+          }
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_tracker/widget/drawer.dart';
 
 
 class Dashbord extends StatelessWidget {
@@ -8,6 +9,7 @@ class Dashbord extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("data"),),
+      drawer: Drawer(child: AppDrawer(),),
       body: Padding(
         padding:  EdgeInsets.all(16),
           child:  Column(
