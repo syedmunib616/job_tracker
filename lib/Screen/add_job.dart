@@ -15,6 +15,9 @@ class _AddJobState extends State<AddJob> {
     final positionController= TextEditingController();
     String status="Applied";
 
+
+
+
     return Scaffold(
       appBar: AppBar(title: Text("Add Job"),),
       body: Padding(

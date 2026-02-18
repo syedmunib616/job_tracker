@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         "/addjob": (context)=> AddJob()
       },
       //  home: Dashbord(),
-      //
+      // home: JobListScreen(),
       // home: LoginScreen(),
     );
   }
