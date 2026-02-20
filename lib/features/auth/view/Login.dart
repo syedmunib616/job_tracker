@@ -2,9 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:job_tracker/features/dashboard/view/dashbord.dart';
 import 'package:job_tracker/features/auth/view/forget.dart';
 import 'package:job_tracker/features/auth/view/sign_up.dart';
+import 'package:job_tracker/features/dashboard/view/dashbord.dart';
 
 import '../../../core/widget/app_text_field.dart';
 
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         GestureDetector(
                           onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashbord()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 14),

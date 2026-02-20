@@ -150,7 +150,7 @@ class AppDrawer extends StatelessWidget {
                   drawerItem(context, Icons.work, "Job List", "/job"),
                   drawerItem(context, Icons.add, "Add Job", "/addJob"),
                   drawerItem(context, Icons.info, "Job Detail", "/detail"),
-
+                  drawerItem(context, Icons.settings, "Settings", "/settings"),
                   Divider(color: Colors.white24),
 
                   drawerItem(context, Icons.logout, "Logout", "/login"),
