@@ -1,37 +1,82 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# =============================================
+# Flutter / Dart / Pub generated files
+# =============================================
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.flutter-plugins
+.flutter-plugins-dependencies
+coverage/
 
-# IntelliJ related
+# =============================================
+# Firebase secrets - CRITICAL: NEVER COMMIT THESE!
+# =============================================
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# =============================================
+# Android signing & secrets
+# =============================================
+android/key.properties
+android/*.keystore
+android/*.jks
+android/*.keystore.*
+android/app/build.gradle  # only if it contains secrets (check it first!)
+
+# =============================================
+# iOS secrets & provisioning
+# =============================================
+ios/Runner/*.mobileprovision
+ios/Runner/*.p12
+ios/Runner/Info.plist  # only if it has API keys or secrets
+
+# =============================================
+# IDE / Editor files (personal settings)
+# =============================================
+.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
+.vscode/
+*.code-workspace
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# =============================================
+# macOS / Windows junk files
+# =============================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*~
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
+# =============================================
+# Environment / secret files (if you use them)
+# =============================================
+.env
+.env.local
+.env.development
+.env.production
+.env.example  # keep this if you want to show structure, but remove real secrets
+
+# =============================================
+# Logs & temporary files
+# =============================================
+*.log
+flutter_error.log
+*.tmp
+*.bak
+
+# =============================================
+# Miscellaneous (keep some from default)
+# =============================================
+*.class
+*.pyc
+.migrate_working_dir/
+.swiftpm/
 
 # Symbolication related
 app.*.symbols
