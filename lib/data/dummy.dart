@@ -1,4 +1,4 @@
-import '../models/job.dart';
+import '../features/jobs/models/job.dart';
 
 final jobs = [
   Job(title: "Flutter Intern", company: "Google", status: "Applied"),

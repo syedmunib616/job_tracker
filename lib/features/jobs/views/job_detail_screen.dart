@@ -26,7 +26,7 @@ class JobDetailScreen extends StatelessWidget {
       child: Card(
         child:SizedBox(
           height: 100,
-          width: MediaQuery.of(context).size.width, // Example using MediaQuery
+          width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(

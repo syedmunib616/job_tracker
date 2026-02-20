@@ -1,11 +1,14 @@
+import 'dart:ffi';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:job_tracker/Screen/add_job.dart';
-import 'Screen/Login.dart';
-import 'Screen/dashbord.dart';
-import 'Screen/job_detail_screen.dart';
-import 'Screen/job_list_screen.dart';
-
+import 'package:job_tracker/features/jobs/views/add_job.dart';
+import 'package:job_tracker/routes.dart';
+import 'features/auth/view/Login.dart';
+import 'features/dashboard/view/dashbord.dart';
+import 'features/jobs/views/job_detail_screen.dart';
+import 'features/jobs/views/job_list_screen.dart';
+import 'package:collection/collection.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -18,16 +21,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      routes: {
-        "/":(context)=>Dashbord(),
-        "/job":(context)=>JobListScreen(),
-        "/detail":(context)=>JobDetailScreen(),
-        "/addjob": (context)=> AddJob()
-      },
+      debugShowCheckedModeBanner: false,
+      title: "Student Job Tracker",
+      initialRoute: "/",
+      routes: AppRoutes.routes,
+    );
+
+
+    return MaterialApp(
+      // routes: {
+      //   "/":(context)=>Dashbord(),
+      //   "/job":(context)=>JobListScreen(),
+      //   "/detail":(context)=>JobDetailScreen(),
+      //   "/addjob": (context)=> AddJob()
+      // },
       //  home: Dashbord(),
       // home: JobListScreen(),
-      // home: LoginScreen(),
+       home: LoginScreen(),
     );
   }
 

@@ -2,9 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:job_tracker/Screen/dashbord.dart';
-import 'package:job_tracker/Screen/forget.dart';
-import 'package:job_tracker/Screen/sign_up.dart';
+import 'package:job_tracker/features/dashboard/view/dashbord.dart';
+import 'package:job_tracker/features/auth/view/forget.dart';
+import 'package:job_tracker/features/auth/view/sign_up.dart';
+
+import '../../../core/widget/app_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,15 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // ✅ LOGO IMAGE (OPTIONAL)
-                        // CircleAvatar(
-                        //   radius: 45,
-                        //   backgroundColor: Colors.white.withOpacity(0.2),
-                        //   child: CircleAvatar(
-                        //     radius: 40,
-                        //     backgroundImage: AssetImage("assets/download.png"),
-                        //   ),
-                        // ),
 
                         const SizedBox(height: 5),
 
@@ -69,10 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Welcome",
                           style: GoogleFonts.lato(
                             textStyle:  TextStyle(
-                              // fontSize: 20,
-                              // fontWeight: FontWeight.bold,
-                              // color: Colors.white,
-                              // letterSpacing: 2,
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -81,38 +70,27 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         ),
 
-                        // const SizedBox(height: 8),
-                        // Text(
-                        //   "Login to your futuristic app",
-                        //   style: TextStyle(color: Colors.white70),
-                        // ),
-
                         const SizedBox(height: 15),
 
-                        // Email
-                        futuristicField(
+                        AppTextField(
                           controller: emailController,
-                          hint: "Email",
-                          icon: Icons.email,
-                        ),
+                            hint: "Email",
+                            iconData: Icons.email,),
 
                         const SizedBox(height: 18),
-
                         // Password
-                        futuristicField(
+                        AppTextField(
                           controller: passController,
                           hint: "Password",
-                          icon: Icons.lock,
+                          iconData: Icons.lock,
                           isPassword: true,
                         ),
 
                         const SizedBox(height: 30),
 
-
                         GestureDetector(
                           onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashbord()));
-
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 14),

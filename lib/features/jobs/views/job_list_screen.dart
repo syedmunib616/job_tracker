@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:job_tracker/features/jobs/views/job_card.dart';
 
-import '../data/dummy.dart';
-import '../widget/job_card.dart';
+import '../../../data/dummy.dart';
 import 'add_job.dart';
 
 // import '../data/dummy.dart' show jobs;

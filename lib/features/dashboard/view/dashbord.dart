@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job_tracker/widget/drawer.dart';
+import 'package:job_tracker/core/widget/drawer.dart';
 
 
 class Dashbord extends StatelessWidget {
