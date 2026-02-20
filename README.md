@@ -45,5 +45,5 @@ Designed for international students/professionals on OPT who need an organized w
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/yourusername/job-tracker.git
+   git clone https://github.com/syedmunib616/job-tracker.git
    cd job-tracker
