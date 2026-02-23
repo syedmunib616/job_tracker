@@ -58,18 +58,7 @@ class JobDetailScreen extends StatelessWidget {
                   textStyle:  TextStyle(
                     fontSize: 14,
                     color: getStatusColor(job.status)
-                    // fontWeight: FontWeight.bold,
-                    // color:job.status=="Applied"
-                    //     ? Colors.black
-                    //     : job.status=="Interview"
-                    //     :Colors.blue
-                    //     :Colors.black,
-                    // job.status == "Applied"
-                    //     ? Colors.black
-                    //     : job.status == "Interview"
-                    //     ? Colors.blue
-                    //     : Colors.black,
-                    // letterSpacing: 2,
+
                   ),
                 ),)
               ],
@@ -78,13 +67,7 @@ class JobDetailScreen extends StatelessWidget {
         ),
       ),
 
-      // child: Column(
-      //     children: [
-      //       Text("Company: ${job.company}", style: TextStyle(fontSize: 18),),
-      //       SizedBox(height: 10,),
-      //       Text("Status: ${job.status}", style: TextStyle(fontSize: 18),)
-      //   ],
-      // ),
+
 
       ),
 

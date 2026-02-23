@@ -1,49 +1,231 @@
-# Job Tracker App
+#  Job Tracker App — Flutter + Firebase + Riverpod (Enterprise MVVM Architecture)
 
-A Flutter mobile application for tracking job applications, interview stages, and OPT/CPT 90-day unemployment rule compliance.
+> **This project follows industry-standard MVVM architecture and demonstrates production-level Flutter engineering practices used in modern US tech companies.**
 
-Designed for international students/professionals on OPT who need an organized way to manage their job search.
+A scalable Flutter mobile application for job tracking with Firebase authentication, Riverpod state management, and clean enterprise architecture.
 
-## Features
+This project is built to showcase **professional Flutter engineering skills for US recruiters and tech companies**.
 
-- Dashboard with application status grid (Applied, Interview, Offer, Rejected)
-- OPT 90-day rule countdown tracker with progress visualization
+---
+
+# 📌 Overview
+
+The **Job Tracker App** is a modular Flutter application designed for managing job applications while demonstrating:
+
+- Clean architecture
+- Feature-based modular structure
+- Firebase authentication
+- Professional error handling
+- Persistent user sessions
+- Dark / Light / System theme modes
+- Scalable MVVM + Riverpod architecture
+
+---
+
+# ✨ Features
+
+## 🔐 Authentication
+- Firebase Email/Password Authentication
+- Login, Sign Up, Forgot Password
+- Auth Gate for persistent login session
+- Splash Screen → Auth Gate → Dashboard flow
+- Professional error handling:
+    - Incorrect password
+    - User not found
+    - Invalid email
+    - Weak password
+    - Email already in use
+
+---
+
+## 🧠 Architecture & State Management
+- **MVVM (Model–View–ViewModel)**
+- **Riverpod for state management**
+- Feature-first modular architecture
+- Clean separation of UI, business logic, and services
+- Centralized providers and services layer
+- Scalable folder structure used in production apps
+
+---
+
+## 📊 Dashboard
+- Job application statistics grid
 - Recent applications list
-- Firebase Authentication & Firestore backend
-- Light / Dark mode support
-- Riverpod state management
+- OPT countdown tracker (logic layer implemented)
+- Future-ready Firestore analytics integration
 
-## Screenshots
+---
 
-*(Add screenshots here when ready)*
+## 🎨 UI & UX
+- Light Mode
+- Dark Mode
+- System Theme Mode
+- Material 3 UI
+- Reusable global widgets
+- Clean, maintainable UI code
 
-<!-- Example when you have images:
-### Light Mode
-![Dashboard - Light Mode](screenshots/dashboard-light.png)
+---
 
-### Dark Mode
-![Dashboard - Dark Mode](screenshots/dashboard-dark.png)
--->
+# 🏗️ Tech Stack
 
-## Tech Stack
+| Technology | Purpose |
+|------------|----------|
+| Flutter | Cross-platform mobile framework |
+| Dart | Programming language |
+| Firebase Authentication | User authentication |
+| Cloud Firestore | Job tracking database |
+| Riverpod | State management |
+| MVVM Architecture | Scalable clean architecture |
+| Material 3 | Modern UI design |
 
-- Flutter 3.x
-- Riverpod
-- Firebase (Authentication + Firestore)
-- Material 3 design
+---
+# 📸 Screenshots
 
-## Getting Started
+*(Add screenshots later)*
 
-### Prerequisites
+### Login Screen
+![Login](screenshots/login.png)
+
+### Dashboard Screen
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+# ⚙️ Getting Started
+
+## ✅ Prerequisites
 
 - Flutter SDK (latest stable)
 - Dart SDK
-- Firebase project with Authentication and Firestore enabled
+- Firebase project with Authentication & Firestore enabled
 
-### Installation
+---
 
-1. Clone the repository
+## 📥 Installation
 
-   ```bash
-   git clone https://github.com/syedmunib616/job-tracker.git
-   cd job-tracker
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/syedmunib616/job-tracker.git
+cd job-tracker
+```
+---
+
+# 📂 Project Architecture (Enterprise MVVM + Feature-Based)
+
+```text
+lib/
+├── core/                         # App-wide shared code
+│   ├── errors/                   # auth_failure.dart
+│   ├── providers/                # auth_providers.dart, theme_providers.dart
+│   ├── constants/                # app_colors.dart, app_strings.dart
+│   ├── services/                 # Global singletons (Firebase instances)
+│   │   ├── auth_service.dart     # Firebase Auth wrapper
+│   │   └── firestore_service.dart# Firestore CRUD logic
+│   ├── theme/                    # dark_theme.dart, light_theme.dart
+│   └── widgets/                  # Global reusable widgets
+│       ├── drawer.dart
+│       └── app_text_field.dart
+│
+├── features/                     # Feature modules
+│   ├── auth/                     # Authentication feature
+│   │   ├── models/               # user_model.dart
+│   │   ├── view_models/          # auth_state.dart, auth_view_model.dart
+│   │   ├── views/                # login_view.dart, register_view.dart, forget.dart, auth_gate.dart
+│   │   └── widgets/              # login_background.dart, login_form.dart, auth_button.dart
+│   │
+│   ├── dashboard/                # OPT Countdown & Job Stats
+│   │   ├── view_models/          # opt_view_model.dart
+│   │   ├── views/                # dashboard_view.dart
+│   │   └── widgets/              # UI components
+│   │       ├── application_tile.dart
+│   │       ├── info_row.dart
+│   │       ├── job_stats_chart.dart
+│   │       ├── job_status_grid.dart
+│   │       ├── opt_countdown_card.dart
+│   │       ├── recent_application_card.dart
+│   │       └── status_card.dart
+│   │
+│   ├── jobs/                     # Job CRUD feature
+│   │   ├── models/               # job_model.dart, job.dart
+│   │   ├── view_models/          # job_view_model.dart
+│   │   └── views/                # job_list_view.dart, job_card.dart, job_detail_screen.dart, job_list_screen.dart
+│   │
+│   ├── splash/                   # Splash Screen feature
+│   │   └── views/                # splash_view.dart
+│   │
+│   └── settings/                 # Settings feature
+│       └── views/                # settings_view.dart
+│
+├── main.dart                     # App entry point & provider setup
+└── routes.dart                   # Centralized navigation
+
+```
+---
+
+### Install Dependencies 
+- flutter pub get
+## Add Firebase Configuration
+### Android
+- android/app/google-services.json
+### iOS
+- ios/Runner/GoogleService-Info.plist
+#### Run the App
+- flutter run
+---
+
+## Authentication Flow
+- Splash screen loads
+- Auth Gate checks Firebase user session
+- If user is authenticated → Dashboard
+- If user is not authenticated → Login screen
+- User remains logged in until manual logout
+
+---
+
+## Roadmap (Future Enhancements)
+- Full job application CRUD with Firestore
+- OPT 90-day unemployment countdown visualization
+- Push notifications for OPT reminders
+- Resume upload and tracking
+- Analytics dashboard
+- Web admin panel
+- Firebase Cloud Functions automation
+
+---
+
+## Why This Project Matters
+This project demonstrates:
+- Enterprise-level Flutter MVVM architecture
+- Production-ready Firebase integration
+- Feature-based scalable code structure
+- Modern Riverpod state management
+- Clean UI separation and reusable widgets
+- Real-world authentication and error handling
+
+---
+
+## Author
+Syed Munib
+Flutter Developer | Mobile App Engineer
+International Computer Science Graduate Student in the United States
+
+GitHub: https://github.com/syedmunib616
+
+LinkedIn: https://www.linkedin.com/in/thesyedmunib/
+
+---
+
+### License
+
+This project is licensed under the MIT License.
+
+---
+### Support
+
+If you like this project, please give it a star on GitHub.
+
+---
+
+___
+

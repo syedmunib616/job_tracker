@@ -35,35 +35,4 @@ class JobCard extends StatelessWidget {
   }
 }
 
-// import 'package:flutter/material.dart';
-//
-//
-// class JobCard extends StatelessWidget {
-//   const JobCard(this.jobname, this.Company, this.status, {super.key});
-//
-//   final String jobname;
-//   final String Company;
-//   final String status;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: Card(
-//           child: Padding(
-//             padding: const EdgeInsets.all(10.0),
-//             child: Row(
-//               children: [
-//                 Text("${jobname}"),
-//                 Text("${Company}"),
-//                 Text("${status}")
-//
-//               ],
-//             ),
-//           ),
-//                ),
-//        );
-//
-//   }
-// }
+

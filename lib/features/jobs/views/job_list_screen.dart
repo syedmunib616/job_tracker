@@ -28,23 +28,7 @@ class JobListScreen extends StatelessWidget {
             // return JobCard(jobs[index].title, jobs[index].company, jobs[index].status);
           }
       ),
-      // body: ListView.builder(
-      //   itemCount: jobs.length,
-      //   itemBuilder: (context, index){
-      //     final job = jobs[index];
-      //     return ListTile(
-      //
-      //       title: Text(job.title),
-      //       subtitle: Text(job.company),
-      //       trailing: Text(job.status),
-      //       onTap: (){
-      //         Navigator.pushNamed(context, "/detail",arguments: job);
-      //       },
-      //
-      //     );
-      //   },
-      //
-      // ),
+
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: (){

@@ -143,8 +143,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     print("Send reset email to: $email");
 
-    // Firebase code (add firebase_auth package)
-    // FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+
   }
 
   // Text Field

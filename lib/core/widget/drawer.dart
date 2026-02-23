@@ -1,97 +1,10 @@
 import 'package:flutter/material.dart';
-// class AppDrawer extends StatelessWidget {
-//   const AppDrawer({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//
-//     return Drawer(
-//       child: Column(
-//         children: [
-//           // 🔥 TOP PROFILE HEADER
-//           Container(
-//             height: 220,
-//             width: double.infinity,
-//             padding: EdgeInsets.only(top: 40),
-//             decoration: BoxDecoration(
-//               gradient: LinearGradient(
-//                 colors: [Colors.deepPurple, Colors.blueAccent],
-//                 begin: Alignment.topLeft,
-//                 end: Alignment.bottomRight,
-//               ),
-//               borderRadius: BorderRadius.only(
-//                 bottomLeft: Radius.circular(30),
-//                 bottomRight: Radius.circular(30),
-//               ),
-//             ),
-//             child: Column(
-//               children: [
-//                 CircleAvatar(
-//                   radius: 45,
-//                   backgroundColor: Colors.white,
-//                   child: Icon(Icons.person, size: 50, color: Colors.black),
-//                 ),
-//                 SizedBox(height: 10),
-//                 Text(
-//                   "Munib",
-//                   style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 20,
-//                       fontWeight: FontWeight.bold),
-//                 ),
-//                 Text(
-//                   "munib@example.com",
-//                   style: TextStyle(color: Colors.white70),
-//                 ),
-//               ],
-//             ),
-//           ),
-//
-//           // MENU ITEMS
-//           Expanded(
-//             child: ListView(
-//               children: [
-//                 drawerItem(Icons.dashboard, "Dashboard", () {
-//                   Navigator.pushReplacementNamed(context, "/");
-//                 }),
-//
-//                 drawerItem(Icons.work, "Job List", () {
-//                   Navigator.pushReplacementNamed(context, "/job");
-//                 }),
-//
-//                 drawerItem(Icons.add, "Add Job", () {
-//                   Navigator.pushReplacementNamed(context, "/addJob");
-//                 }),
-//
-//                 drawerItem(Icons.info, "Job Detail", () {
-//                   Navigator.pushReplacementNamed(context, "/detail");
-//                 }),
-//
-//                 Divider(),
-//
-//                 drawerItem(Icons.logout, "Logout", () {}),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Widget drawerItem(IconData icon, String title, VoidCallback onTap) {
-//     return ListTile(
-//       leading: Icon(icon, color: Colors.deepPurple),
-//       title: Text(title, style: TextStyle(fontSize: 16)),
-//       onTap: onTap,
-//     );
-//   }
-// }
-class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/features/auth/view_models/auth_view_model.dart';
 
+class AppDrawer extends  ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -153,7 +66,22 @@ class AppDrawer extends StatelessWidget {
                   drawerItem(context, Icons.settings, "Settings", "/settings"),
                   Divider(color: Colors.white24),
 
-                  drawerItem(context, Icons.logout, "Logout", "/login"),
+                  // drawerItem(context, Icons.logout, "Logout", "/login"),
+                  ListTile(
+                    leading: Icon(Icons.logout, color: Colors.white),
+                    title: Text(
+                      "Logout",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        letterSpacing: 1.1,
+                      ),
+                    ),
+                    onTap: () {
+                      ref.read(authViewModelProvider.notifier).logout();
+                    },
+                    hoverColor: Colors.white10,
+                  )
                 ],
               ),
             ),

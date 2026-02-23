@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:job_tracker/features/jobs/views/add_job.dart';
 import 'package:job_tracker/routes.dart';
 import 'core/providers/theme_provider.dart';
-import 'features/auth/view/Login.dart';
+import 'features/auth/view/login.dart';
 import 'features/dashboard/view/dashbord.dart';
 import 'features/jobs/views/job_detail_screen.dart';
 import 'features/jobs/views/job_list_screen.dart';
@@ -13,11 +13,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/theme/app_theme.dart';
 void main() async{
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   // runApp(const MyApp());
   runApp(const ProviderScope(child: MyApp()));
 }
+
+
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -32,7 +35,6 @@ class MyApp extends ConsumerWidget {
     //   initialRoute: "/",
     //   routes: AppRoutes.routes,
     // );
-
     final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp(

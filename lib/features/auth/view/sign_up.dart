@@ -1,16 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:job_tracker/core/widget/app_text_field.dart';
+import 'package:job_tracker/features/auth/view_models/auth_view_model.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends ConsumerWidget {
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -20,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool showConfirmPass = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Stack(
         children: [
@@ -63,45 +60,113 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
 
                         const SizedBox(height: 20),
-
-                        futuristicField(
+                        AppTextField(
                           controller: nameController,
                           hint: "Full Name",
-                          icon: Icons.person,
+                          iconData: Icons.person,
                         ),
 
-                        const SizedBox(height: 15),
 
-                        futuristicField(
+                        const SizedBox(height: 15),
+                        AppTextField(
                           controller: emailController,
                           hint: "Email",
-                          icon: Icons.email,
+                          iconData: Icons.email,
                         ),
 
-                        const SizedBox(height: 15),
 
-                        futuristicField(
+                        const SizedBox(height: 15),
+                        AppTextField(
                           controller: passController,
                           hint: "Password",
-                          icon: Icons.lock,
+                          iconData: Icons.lock,
                           isPassword: true,
                         ),
 
-                        const SizedBox(height: 15),
 
-                        futuristicField(
+                        const SizedBox(height: 15),
+                        AppTextField(
                           controller: confirmPassController,
-                          hint: "Confirm Password",
-                          icon: Icons.lock_outline,
-                          isConfirm: true,
+                          hint: "Password",
+                          iconData: Icons.lock,
+                          isPassword: true,
                         ),
+
+                        // futuristicField(
+                        //   controller: confirmPassController,
+                        //   hint: "Confirm Password",
+                        //   icon: Icons.lock_outline,
+                        //   isConfirm: true,
+                        // ),
 
                         const SizedBox(height: 30),
 
                         // SIGN UP BUTTON
                         GestureDetector(
-                          onTap: () {
-                            signUpUser();
+                          onTap: () async{
+                            final email = emailController.text.trim();
+                            final pass = passController.text.trim();
+                            final confirmPass = confirmPassController.text.trim();
+
+                            // Email empty check
+                            if (email.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Email is required")),
+                              );
+                              return;
+                            }
+
+                            // Email format check
+                            if (!isValidEmail(email)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Enter a valid email address")),
+                              );
+                              return;
+                            }
+
+                            // Password match check
+                            if (pass != confirmPass) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Passwords do not match")),
+                              );
+                              return;
+                            }
+
+                            if(pass.isEmpty || confirmPass.isEmpty ){
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("One of passwords fields are empty")),
+                              );
+                              return;
+                            }
+
+                            if (passController.text != confirmPassController.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Passwords do not match")),
+                              );
+                              return;
+                            }
+                            try{
+
+
+                            await ref.read(authViewModelProvider.notifier).register(
+                              emailController.text.trim(),
+                              passController.text.trim(),
+                            );
+                            Navigator.pushReplacementNamed(context, "/auth");
+                            }catch(e){
+                              String msg = "Signup failed";
+
+                              if (e.toString().contains("email-already-in-use")) {
+                                msg = "Email already exists";
+                              } else if (e.toString().contains("weak-password")) {
+                                msg = "Password too weak (min 6 chars)";
+                              }
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(msg)),
+                              );
+                            }
+                            // signUpUser();
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 14),
@@ -144,7 +209,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 style: TextStyle(color: Colors.white70)),
                             TextButton(
                               onPressed: () {
-                                Navigator.pop(context);
+                                 Navigator.pop(context);
                               },
                               child: Text(
                                 "Login",
@@ -177,23 +242,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  // Firebase Sign Up Function (Add Firebase Auth Later)
-  void signUpUser() {
-    String name = nameController.text.trim();
-    String email = emailController.text.trim();
-    String pass = passController.text.trim();
-    String confirmPass = confirmPassController.text.trim();
-
-    if (pass != confirmPass) {
-      print("Passwords do not match");
-      return;
-    }
-
-    print("Firebase Sign Up Ready: $email");
-    // TODO: FirebaseAuth.instance.createUserWithEmailAndPassword(...)
+  bool isValidEmail(String email) {
+    return RegExp(
+        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    ).hasMatch(email);
   }
 
-  // Futuristic Field
+
   Widget futuristicField({
     required TextEditingController controller,
     required String hint,
@@ -218,13 +273,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             color: Colors.white70,
           ),
           onPressed: () {
-            setState(() {
-              if (isConfirm) {
-                showConfirmPass = !showConfirmPass;
-              } else {
-                showPass = !showPass;
-              }
-            });
+
           },
         )
             : null,
