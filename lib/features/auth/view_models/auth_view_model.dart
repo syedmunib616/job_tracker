@@ -113,6 +113,26 @@ class AuthViewModel extends StateNotifier<AuthState> {
     await _auth.register(email, password);
   }
 
+  Future<void> googleLogin() async {
+    try {
+      state = AuthState(loading: true);
+      await _auth.googleLogin();
+      state = AuthState();
+    } catch (e) {
+      state = AuthState(error: e.toString());
+    }
+  }
+
+  Future<void> resetPassword(String email) async {
+    try {
+      state = AuthState(loading: true);
+      await _auth.resetPassword(email);
+      state = AuthState();
+    } catch (e) {
+      state = AuthState(error: e.toString());
+    }
+  }
+
   Future<void> logout() async {
     await _auth.logout();
   }

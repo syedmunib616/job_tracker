@@ -55,6 +55,15 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         );
       }
     });
+
+    ref.listen(authViewModelProvider, (prev, next) {
+      if (next.error != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.error!)),
+        );
+      }
+    });
+
     return // MAIN LOGIN UI
       Center(
         child: SingleChildScrollView(
@@ -165,12 +174,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                               letterSpacing: 2,
                             ),
                           ),
-                          // style: TextStyle(
-                          //   fontSize: 20,
-                          //   fontWeight: FontWeight.bold,
-                          //   color: Colors.white,
-                          //   letterSpacing: 2,
-                          // ),
                         ),
                       ),
                     ),
@@ -196,7 +199,12 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             style: TextStyle(color: Colors.white70),
                           ),
                         ),
-                        socialButton(FontAwesomeIcons.google, Colors.white),
+                        GestureDetector(
+                            onTap: ()async{
+                              await ref.read(authViewModelProvider.notifier).googleLogin();
+                            },
+
+                            child: socialButton(FontAwesomeIcons.google, Colors.white)),
                         // const SizedBox(width: 15),
                         // socialButton(FontAwesomeIcons.apple, Colors.white),
                         // const SizedBox(width: 15),

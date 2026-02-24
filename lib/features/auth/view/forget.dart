@@ -1,19 +1,34 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+import '../view_models/auth_state.dart';
+import '../view_models/auth_view_model.dart';
 
-  @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
-}
+class ForgotPasswordScreen extends ConsumerWidget {
+  ForgotPasswordScreen({super.key});
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final emailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final authState = ref.watch(authViewModelProvider);
+
+    // Listen for errors or success
+    ref.listen<AuthState>(authViewModelProvider, (prev, next) {
+      if (next.error != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.error!), backgroundColor: Colors.red),
+        );
+      } else if (prev?.loading == true && !next.loading) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Password reset email sent")),
+        );
+      }
+    });
+
     return Scaffold(
       body: Stack(
         children: [
@@ -74,7 +89,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                       // RESET BUTTON
                       GestureDetector(
-                        onTap: resetPassword,
+                        onTap: authState.loading
+                            ? null
+                            : () async {
+                          await ref
+                              .read(authViewModelProvider.notifier)
+                              .resetPassword(emailController.text.trim());
+                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           alignment: Alignment.center,
