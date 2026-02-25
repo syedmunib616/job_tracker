@@ -81,11 +81,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:job_tracker/core/errors/auth_failure.dart';
+import 'package:job_tracker/core/services/firestore_service.dart';
 import '../../../core/services/auth_service.dart';
 import 'auth_state.dart';
 
 final authServiceProvider = Provider((ref) => AuthService());
-
+final firestoreServiceProvider = Provider((ref) => FirestoreService());
 // Firebase auth state stream
 final authStateProvider = StreamProvider((ref) {
   return ref.read(authServiceProvider).authStateChanges();
@@ -95,7 +96,10 @@ final authStateProvider = StreamProvider((ref) {
 
 class AuthViewModel extends StateNotifier<AuthState> {
   final AuthService _auth;
-  AuthViewModel(this._auth) : super(const AuthState());
+  final FirestoreService _firestore;
+
+  AuthViewModel(this._auth, this._firestore) : super(const AuthState());
+  // AuthViewModel(this._auth) : super(const AuthState());
 
   Future<void> login(String email, String password) async {
     state = state.copyWith(loading: true, error: null);
@@ -109,8 +113,33 @@ class AuthViewModel extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> register(String email, String password) async {
-    await _auth.register(email, password);
+
+  Future<void> register(String email, String password,String name) async {
+    state = state.copyWith(loading: true, error: null);
+    // await _auth.register(email, password);
+    state = state.copyWith(loading: true, error: null);
+
+    try {
+      final user = await _auth.register(email, password);
+
+      if (user != null) {
+        await _firestore.createUser(
+          uid: user.uid,
+          name: name,
+          email: email,
+        );
+      }
+    } on AuthFailure catch (e) {
+      print("$e");
+      state = state.copyWith(error: e.message);
+    } catch (e) {
+      print("$e");
+      state = state.copyWith(error: e.toString());
+    } finally {
+      state = state.copyWith(loading: false);
+    }
+
+
   }
 
   Future<void> googleLogin() async {
@@ -142,5 +171,13 @@ class AuthViewModel extends StateNotifier<AuthState> {
 
 final authViewModelProvider =
 StateNotifierProvider<AuthViewModel, AuthState>((ref) {
-  return AuthViewModel(ref.read(authServiceProvider));
+  return AuthViewModel(
+    ref.read(authServiceProvider),
+    ref.read(firestoreServiceProvider),
+  );
 });
+
+// final authViewModelProvider =
+// StateNotifierProvider<AuthViewModel, AuthState>((ref) {
+//   return AuthViewModel(ref.read(authServiceProvider));
+// });

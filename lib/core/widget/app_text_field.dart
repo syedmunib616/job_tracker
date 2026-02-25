@@ -17,7 +17,7 @@ class AppTextField extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: _obscureNotifier,
         builder: (context, bool isObscured, child){
-          return TextField(
+          return TextFormField(
             controller: controller,
             // Only obscure if it IS a password field AND notifier says so
             obscureText: isPassword ? isObscured : false,

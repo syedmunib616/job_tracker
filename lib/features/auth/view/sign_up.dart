@@ -103,13 +103,13 @@ class SignUpScreen extends ConsumerWidget {
 
                         // SIGN UP BUTTON
                         GestureDetector(
-                          onTap: () async{
+                          onTap: () async {
                             final email = emailController.text.trim();
                             final pass = passController.text.trim();
                             final confirmPass = confirmPassController.text.trim();
 
                             // Email empty check
-                            if (email.isEmpty) {
+                            if(email.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("Email is required")),
                               );
@@ -117,7 +117,7 @@ class SignUpScreen extends ConsumerWidget {
                             }
 
                             // Email format check
-                            if (!isValidEmail(email)) {
+                            if(!isValidEmail(email)) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("Enter a valid email address")),
                               );
@@ -125,7 +125,7 @@ class SignUpScreen extends ConsumerWidget {
                             }
 
                             // Password match check
-                            if (pass != confirmPass) {
+                            if(pass != confirmPass) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("Passwords do not match")),
                               );
@@ -139,7 +139,7 @@ class SignUpScreen extends ConsumerWidget {
                               return;
                             }
 
-                            if (passController.text != confirmPassController.text) {
+                            if(passController.text != confirmPassController.text) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("Passwords do not match")),
                               );
@@ -147,24 +147,26 @@ class SignUpScreen extends ConsumerWidget {
                             }
                             try{
 
-
                             await ref.read(authViewModelProvider.notifier).register(
                               emailController.text.trim(),
                               passController.text.trim(),
+                              nameController.text.trim()
                             );
-                            Navigator.pushReplacementNamed(context, "/auth");
-                            }catch(e){
-                              String msg = "Signup failed";
 
+                            Navigator.pushReplacementNamed(context, "/auth");
+
+                            }catch(e){
+
+                              String msg = "Signup failed";
                               if (e.toString().contains("email-already-in-use")) {
                                 msg = "Email already exists";
                               } else if (e.toString().contains("weak-password")) {
                                 msg = "Password too weak (min 6 chars)";
                               }
-
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text(msg)),
                               );
+
                             }
                             // signUpUser();
                           },
@@ -230,6 +232,7 @@ class SignUpScreen extends ConsumerWidget {
                             socialButton(FontAwesomeIcons.google, Colors.white),
                           ],
                         ),
+
                       ],
                     ),
                   ),

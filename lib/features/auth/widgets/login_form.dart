@@ -122,7 +122,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                       ),
 
                     GestureDetector(
-                      onTap:()async{
+                      onTap:() async {
                         // await ref.read(authViewModelProvider).login(emailController.text, passController.text);
                         if( emailController.text.isNotEmpty && passController.text.isNotEmpty){
                         try{

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/constants/app_colors.dart';
 import 'package:job_tracker/core/providers/theme_provider.dart';
+import 'package:job_tracker/core/widget/drawer.dart';
 
 // import '../../../core/providers/theme_provider.dart';
 
@@ -13,6 +15,7 @@ class SettingsView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
+      drawer: AppDrawer(),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -32,7 +35,7 @@ class SettingsView extends ConsumerWidget {
                     style: SegmentedButton.styleFrom(          // ← use styleFrom helper
                       backgroundColor: Colors.grey[200],
                       foregroundColor: Colors.black87,
-                      selectedBackgroundColor: Theme.of(context).colorScheme.primary,
+                      selectedBackgroundColor: AppColors.textSecondary,
                       selectedForegroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       // side: const BorderSide(color: Colors.grey),           // optional border

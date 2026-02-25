@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/features/auth/view_models/auth_view_model.dart';
+import 'package:job_tracker/core/constants/app_colors.dart';
 
 class AppDrawer extends  ConsumerWidget {
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -18,7 +23,7 @@ class AppDrawer extends  ConsumerWidget {
               width: double.infinity,
               padding: EdgeInsets.only(top: 40),
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: AppColors.textSecondary,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
@@ -59,11 +64,12 @@ class AppDrawer extends  ConsumerWidget {
             Expanded(
               child: ListView(
                 children: [
-                  drawerItem(context, Icons.dashboard, "Dashboard", "/"),
-                  drawerItem(context, Icons.work, "Job List", "/job"),
-                  drawerItem(context, Icons.add, "Add Job", "/addJob"),
+                  drawerItem(context, Icons.dashboard, "Dashboard", "/auth"),
+                  drawerItem(context, Icons.work, "Job List", "/jobs"),
+                 // drawerItem(context, Icons.add, "Add Job", "/addJob"),
                   drawerItem(context, Icons.info, "Job Detail", "/detail"),
                   drawerItem(context, Icons.settings, "Settings", "/settings"),
+                  drawerItem(context, Icons.timer, "Opt Setup", "/optedit"),
                   Divider(color: Colors.white24),
 
                   // drawerItem(context, Icons.logout, "Logout", "/login"),
