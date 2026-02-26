@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/dashboard/widget/job_status_grid.dart';
+import 'package:job_tracker/features/dashboard/widget/kpi_card.dart';
 import 'package:job_tracker/features/dashboard/widget/opt_countdown_card.dart';
 import 'package:job_tracker/features/dashboard/widget/recent_application_card.dart' show RecentApplicationsCard;
+import 'package:job_tracker/features/employment/view_models/employment_view_model.dart';
+import 'package:job_tracker/features/jobs/view_models/job_view_model.dart';
 import 'package:job_tracker/features/opt/opt_view_model/opt_view_model.dart';
 import 'package:job_tracker/features/opt/view/opt_view.dart';
+import 'package:fl_chart/fl_chart.dart';
+
+import '../widget/applications_per_month_chart.dart';
 
 class Dashboard extends ConsumerWidget {
   const Dashboard({super.key});
@@ -14,6 +20,9 @@ class Dashboard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final opt = ref.watch(optProvider);
+    // final employmentAsync = ref.watch(jobsProvider);
+    final employmentAsync = ref.watch(employmentStreamProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Munib Syed"),
@@ -25,10 +34,15 @@ class Dashboard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+            const KpiSection(),
+            const SizedBox(height: 24),
+            const ApplicationsPerMonthChart(),
+            const SizedBox(height: 24),
             // Section header + grid
-            _SectionHeader(title: 'Application Status'),
-            const SizedBox(height: 16),
-            const JobStatusGrid(),
+            // _SectionHeader(title: 'Application Status'),
+            // const SizedBox(height: 16),
+            // const JobStatusGrid(),
 
             const SizedBox(height: 32),
 
@@ -59,14 +73,38 @@ class Dashboard extends ConsumerWidget {
             //     loading: () => CircularProgressIndicator(),
             //     error: (e, _) => Text(e.toString()),
             //   ),
+
+
+
             opt.when(
               data: (opt) {
-                if (opt == null) return Text("No OPT Setup Found");
-                return OptCountdownCard(opt: opt);
+                if (opt == null) {
+                  return const Text("No OPT Setup Found");
+                }
+                return employmentAsync.when(
+                  data: (jobs) {
+                    return OptCountdownCard(
+                      opt: opt,
+                      employments: jobs,
+                    );
+                  },
+                  loading: () =>
+                  const CircularProgressIndicator(),
+                  error: (e, _) => Text(e.toString()),
+                );
               },
-              loading: () => CircularProgressIndicator(),
+              loading: () => const CircularProgressIndicator(),
               error: (e, _) => Text(e.toString()),
             ),
+
+            // opt.when(
+            //   data: (opt) {
+            //     if (opt == null) return Text("No OPT Setup Found");
+            //     return OptCountdownCard(opt: opt);
+            //   },
+            //   loading: () => CircularProgressIndicator(),
+            //   error: (e, _) => Text(e.toString()),
+            // ),
             const SizedBox(height: 32),
 
             // Recent applications
@@ -98,5 +136,7 @@ class _SectionHeader extends StatelessWidget {
     );
   }
 }
+
+
 
 

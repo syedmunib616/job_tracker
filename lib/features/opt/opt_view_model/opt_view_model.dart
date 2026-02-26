@@ -9,17 +9,7 @@ import 'package:job_tracker/features/opt/opt_model/opt_model.dart';
 
 
 
-// final optProvider = StreamProvider<OptModel?>((ref) {
-//   final uid = ref.read(authServiceProvider).currentUser!.uid;
-//   return FirebaseFirestore.instance
-//       .collection("users")
-//       .doc(uid)
-//       .snapshots()
-//       .map((doc) {
-//     if (!doc.exists || doc.data()!["optTimeline"] == null) return null;
-//     return OptModel.fromJson(doc["optTimeline"]);
-//   });
-// });
+
 
 
 

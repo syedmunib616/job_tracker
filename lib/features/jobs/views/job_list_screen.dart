@@ -157,78 +157,7 @@ class JobListView extends ConsumerWidget {
                     ),
                   )
 
-                // child: Dismissible(
-                //   key: Key(job.id),
-                //   direction: DismissDirection.endToStart,
-                //   background: Container(
-                //     color: Color(0xffc20000),
-                //     alignment: Alignment.centerRight,
-                //     padding: const EdgeInsets.only(right: 20),
-                //     child: const Icon(Icons.delete, color: Colors.white),
-                //   ),
-                //   onDismissed: (_) {
-                //     ref.read(jobViewModelProvider.notifier).deleteJob(job.id);
-                //   },
-                //   child: Card(
-                //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                //     child: ListTile(
-                //       title: Text(job.company, style: TextStyle(fontWeight: FontWeight.bold)),
-                //       subtitle: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Text(job.role),
-                //           const SizedBox(height: 4),
-                //           Container(
-                //             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                //             decoration: BoxDecoration(
-                //               color: getStatusColor(job.status).withOpacity(0.15),
-                //               borderRadius: BorderRadius.circular(6),
-                //             ),
-                //             child: Text(
-                //               job.status,
-                //               style: TextStyle(
-                //                 color: getStatusColor(job.status),
-                //                 fontSize: 12,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //       trailing: Text(
-                //         "\$${job.salary}",
-                //         style: const TextStyle(fontWeight: FontWeight.bold),
-                //       ),
-                //       onTap: () {
-                //         Navigator.push(
-                //           context,
-                //           MaterialPageRoute(builder: (_) => EditJobView(job: job)),
-                //         );
-                //       },
-                //     ),
-                //   ),
-                //   // child: Card(
-                //   //   child: ListTile(
-                //   //     title: Text(job.company),
-                //   //     subtitle: Text("${job.role} • ${job.status}"),
-                //   //     trailing: Text("\$${job.salary}"),
-                //   //     onTap: () {
-                //   //       Navigator.push(
-                //   //         context,
-                //   //         MaterialPageRoute(
-                //   //           builder: (_) => EditJobView(job: job),
-                //   //         ),
-                //   //       );
-                //   //       // Navigator.push(
-                //   //       //   context,
-                //   //       //   MaterialPageRoute(
-                //   //       //     builder: (_) => EditJobView(job: job),
-                //   //       //   ),
-                //   //       // );
-                //   //     },
-                //   //   ),
-                //   // ),
-                // ),
+
               );
             },
           ),
@@ -239,9 +168,3 @@ class JobListView extends ConsumerWidget {
   }
 }
 
-// floatingActionButton: FloatingActionButton(
-// child: Icon(Icons.add),
-// onPressed: (){
-// Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddJob()));
-// }
-// ),

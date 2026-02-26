@@ -70,6 +70,7 @@ class AppDrawer extends  ConsumerWidget {
                   drawerItem(context, Icons.info, "Job Detail", "/detail"),
                   drawerItem(context, Icons.settings, "Settings", "/settings"),
                   drawerItem(context, Icons.timer, "Opt Setup", "/optedit"),
+                  drawerItem(context, Icons.work, "Employment", "/employement"),
                   Divider(color: Colors.white24),
 
                   // drawerItem(context, Icons.logout, "Logout", "/login"),

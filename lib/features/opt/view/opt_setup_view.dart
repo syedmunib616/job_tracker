@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/widget/drawer.dart';
 
 import '../opt_model/opt_model.dart';
 import '../opt_view_model/opt_view_model.dart';
@@ -21,6 +22,7 @@ class _OptSetupViewState extends ConsumerState<OptSetupView> {
 
     return Scaffold(
       appBar: AppBar(title: Text("Setup OPT")),
+      drawer: AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

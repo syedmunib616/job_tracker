@@ -115,51 +115,76 @@ cd job-tracker
 
 ```text
 lib/
-├── core/                         # App-wide shared code
-│   ├── errors/                   # auth_failure.dart
-│   ├── providers/                # auth_providers.dart, theme_providers.dart
-│   ├── constants/                # app_colors.dart, app_strings.dart
-│   ├── services/                 # Global singletons (Firebase instances)
-│   │   ├── auth_service.dart     # Firebase Auth wrapper
-│   │   └── firestore_service.dart# Firestore CRUD logic
-│   ├── theme/                    # dark_theme.dart, light_theme.dart
-│   └── widgets/                  # Global reusable widgets
+├── core/                              # App-wide shared & global logic
+│   ├── errors/                         # auth_failure.dart
+│   ├── providers/                      # auth_providers.dart, theme_providers.dart
+│   ├── constants/                      # app_colors.dart, app_strings.dart
+│   ├── services/                       # Firebase & backend wrappers
+│   │   ├── auth_service.dart
+│   │   ├── employment_service.dart
+│   │   ├── job_service.dart
+│   │   └── opt_service.dart
+│   ├── theme/                          # dark_theme.dart, light_theme.dart
+│   └── widgets/                        # Global reusable widgets
 │       ├── drawer.dart
 │       └── app_text_field.dart
 │
-├── features/                     # Feature modules
-│   ├── auth/                     # Authentication feature
-│   │   ├── models/               # user_model.dart
-│   │   ├── view_models/          # auth_state.dart, auth_view_model.dart
-│   │   ├── views/                # login_view.dart, register_view.dart, forget.dart, auth_gate.dart
-│   │   └── widgets/              # login_background.dart, login_form.dart, auth_button.dart
+├── features/                           # Feature-based modular architecture
+│
+│   ├── auth/                           # Authentication module
+│   │   ├── models/                     # user_model.dart
+│   │   ├── view_models/                # auth_view_model.dart, auth_state.dart
+│   │   ├── views/                      # login_view.dart, register_view.dart, forget.dart, auth_gate.dart
+│   │   └── widgets/                    # login_background.dart, login_form.dart, auth_button.dart
 │   │
-│   ├── dashboard/                # OPT Countdown & Job Stats
-│   │   ├── view_models/          # opt_view_model.dart
-│   │   ├── views/                # dashboard_view.dart
-│   │   └── widgets/              # UI components
+│   ├── dashboard/                      # Dashboard & Analytics
+│   │   ├── view_models/                # dashboard_view_model.dart
+│   │   ├── views/                      # dashboard_view.dart
+│   │   └── widgets/                    # UI components
 │   │       ├── application_tile.dart
 │   │       ├── info_row.dart
 │   │       ├── job_stats_chart.dart
 │   │       ├── job_status_grid.dart
-│   │       ├── opt_countdown_card.dart
 │   │       ├── recent_application_card.dart
 │   │       └── status_card.dart
 │   │
-│   ├── jobs/                     # Job CRUD feature
-│   │   ├── models/               # job_model.dart, job.dart
-│   │   ├── view_models/          # job_view_model.dart
-│   │   └── views/                # job_list_view.dart, job_card.dart, job_detail_screen.dart, job_list_screen.dart
+│   ├── opt/                            # OPT Management Feature
+│   │   ├── models/
+│   │   │   └── opt_model.dart
+│   │   ├── view_models/
+│   │   │   └── opt_view_model.dart
+│   │   ├── views/
+│   │   │   ├── opt_view.dart
+│   │   │   └── opt_setup_view.dart
+│   │   ├── widgets/
+│   │   │   └── info_row.dart
+│   │   └── utils/
+│   │       └── opt_calculator.dart     # Business logic (unemployment calculation)
 │   │
-│   ├── splash/                   # Splash Screen feature
-│   │   └── views/                # splash_view.dart
+│   ├── employment/                     # Employment Tracking Feature
+│   │   ├── models/
+│   │   │   └── employment_model.dart
+│   │   ├── view_models/
+│   │   │   └── employment_view_model.dart
+│   │   └── views/
+│   │       ├── employment_form_view.dart
+│   │       └── employment_list_view.dart
 │   │
-│   └── settings/                 # Settings feature
-│       └── views/                # settings_view.dart
+│   ├── jobs/                           # Job Application CRUD
+│   │   ├── models/                     # job_model.dart
+│   │   ├── view_models/                # job_view_model.dart
+│   │   └── views/                      # job_list_view.dart, job_detail_screen.dart
+│   │
+│   ├── splash/
+│   │   └── views/
+│   │       └── splash_view.dart
+│   │
+│   └── settings/
+│       └── views/
+│           └── settings_view.dart
 │
-├── main.dart                     # App entry point & provider setup
-└── routes.dart                   # Centralized navigation
-
+├── main.dart                            # App entry point & provider setup
+└── routes.dart                          # Centralized navigation
 ```
 ---
 

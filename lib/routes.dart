@@ -6,12 +6,12 @@ import 'package:job_tracker/features/jobs/views/add_job.dart';
 import 'package:job_tracker/features/jobs/views/job_list_screen.dart';
 
 import 'features/dashboard/view/dashbord.dart';
+import 'features/employment/view/employment_list_view.dart';
 import 'features/opt/view/opt_setup_view.dart';
 import 'features/settings/views/settings_view.dart';
 import 'features/splash/view/splash_screen.dart';
 
 class AppRoutes{
-
 
    static final routes = {
      "/": (context) => const SplashScreen(),
@@ -23,5 +23,7 @@ class AppRoutes{
      // "jobDetail": (context) => JobDetailScreen(),
       "/addJob": (context) => AddJobView(),
      "/optedit": (context) => OptSetupView(),
+     "/employement":(context) => EmploymentListView(),
    };
+
 }

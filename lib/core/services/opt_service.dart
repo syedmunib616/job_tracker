@@ -9,8 +9,8 @@ class OptService {
     await _db
         .collection("users")
         .doc(uid)
-        // .collection("optTimeline")
-        // .doc("main")
+        .collection("optTimeline")
+        .doc("main")
         .set(opt.toJson()); // set = add + update
   }
 
