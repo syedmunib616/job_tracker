@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
+import 'package:job_tracker/features/employment/view/resumes_list_view.dart';
+import 'package:job_tracker/features/employment/view/upload_resume_view.dart';
 import 'package:job_tracker/features/employment/view_models/employment_view_model.dart';
 
 import 'employment_form_view.dart';
@@ -26,47 +28,82 @@ class EmploymentListView extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
       drawer: AppDrawer(),
-      body: employmentAsync.when(
-        data: (jobs) {
-          if (jobs.isEmpty) {
-            return const Center(child: Text("No Employment Added"));
-          }
-
-          return ListView.builder(
-            itemCount: jobs.length,
-            itemBuilder: (context, index) {
-              final job = jobs[index];
-
-              return Dismissible(
-                key: Key(job.id),
-                background: Container(color: Colors.red),
-                onDismissed: (_) {
-                  ref
-                      .read(employmentViewModelProvider.notifier)
-                      .deleteEmployment(job.id);
-                },
-                child: ListTile(
-                  title: Text(job.companyName),
-                  subtitle: Text(
-                      "${job.startDate.toLocal().toString().split(" ")[0]} - "
-                          "${job.endDate != null ? job.endDate!.toLocal().toString().split(" ")[0] : "Present"}"),
-                  onTap: () {
+      body: Column(
+        children: [
+          //  Two buttons at the top
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            EmploymentFormView(employment: job),
+                      MaterialPageRoute(builder: (_) => const UploadResumeView()),
+                    );
+                  },
+                  icon: const Icon(Icons.upload_file),
+                  label: const Text("Upload Resume"),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ResumesListView()),
+                    );
+                  },
+                  icon: const Icon(Icons.list),
+                  label: const Text("My Resumes"),
+                ),
+              ],
+            ),
+          ),
+
+          // ✅ Employment list
+          Expanded(
+            child: employmentAsync.when(
+              data: (jobs) {
+                if (jobs.isEmpty) {
+                  return const Center(child: Text("No Employment Added"));
+                }
+
+                return ListView.builder(
+                  itemCount: jobs.length,
+                  itemBuilder: (context, index) {
+                    final job = jobs[index];
+
+                    return Dismissible(
+                      key: Key(job.id),
+                      background: Container(color: Colors.red),
+                      onDismissed: (_) {
+                        ref
+                            .read(employmentViewModelProvider.notifier)
+                            .deleteEmployment(job.id);
+                      },
+                      child: ListTile(
+                        title: Text(job.companyName),
+                        subtitle: Text(
+                            "${job.startDate.toLocal().toString().split(" ")[0]} - "
+                                "${job.endDate != null ? job.endDate!.toLocal().toString().split(" ")[0] : "Present"}"),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => EmploymentFormView(employment: job),
+                            ),
+                          );
+                        },
                       ),
                     );
                   },
-                ),
-              );
-            },
-          );
-        },
-        loading: () =>
-        const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text(e.toString())),
+                );
+              },
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (e, _) => Center(child: Text(e.toString())),
+            ),
+          ),
+        ],
       ),
     );
   }

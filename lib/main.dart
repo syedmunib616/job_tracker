@@ -1,10 +1,12 @@
 import 'dart:ffi';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:job_tracker/features/jobs/views/add_job.dart';
 import 'package:job_tracker/routes.dart';
 import 'core/providers/theme_provider.dart';
+import 'core/services/notification_service.dart';
 import 'features/auth/view/login.dart';
 import 'features/dashboard/view/dashbord.dart';
 import 'features/jobs/views/job_detail_screen.dart';
@@ -16,10 +18,17 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final notificationService = NotificationService();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await notificationService.init();
   // runApp(const MyApp());
   runApp(const ProviderScope(child: MyApp()));
 }
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Background message received: ${message.messageId}");
+}
 
 
 class MyApp extends ConsumerWidget {

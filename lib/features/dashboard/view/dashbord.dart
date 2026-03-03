@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/services/notification_service.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/dashboard/widget/job_status_grid.dart';
 import 'package:job_tracker/features/dashboard/widget/kpi_card.dart';
 import 'package:job_tracker/features/dashboard/widget/opt_countdown_card.dart';
 import 'package:job_tracker/features/dashboard/widget/recent_application_card.dart' show RecentApplicationsCard;
+import 'package:job_tracker/features/employment/view/upload_resume_view.dart';
 import 'package:job_tracker/features/employment/view_models/employment_view_model.dart';
 import 'package:job_tracker/features/jobs/view_models/job_view_model.dart';
 import 'package:job_tracker/features/opt/opt_view_model/opt_view_model.dart';
@@ -34,8 +36,16 @@ class Dashboard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            const KpiSection(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const UploadResumeView()),
+                );
+              },
+              child: const Text('Upload Resume'),
+            ),
+            KpiSection(),
             const SizedBox(height: 24),
             const ApplicationsPerMonthChart(),
             const SizedBox(height: 24),

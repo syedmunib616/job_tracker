@@ -18,37 +18,96 @@ class KpiCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final w=MediaQuery.sizeOf(context).width;
+    final h=MediaQuery.sizeOf(context).height;
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: color.withOpacity(0.2),
-            child: Icon(icon, color: color),
-          ),
-          const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodySmall,
+      // height: 200,
+      // width: 500,
+       //color: Colors.grey,
+      padding:  EdgeInsets.all(13),
+      // decoration: BoxDecoration(
+      //   color: color.withOpacity(0.1),
+      //   borderRadius: BorderRadius.circular(16),
+      // ),
+
+      child:Expanded(
+        flex: 1,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min, // Added to keep it compact
+          children: [
+            Expanded(
+              flex: 1,
+              child: CircleAvatar(
+                // radius: ,
+                backgroundColor: color.withOpacity(0.2),
+                child: Icon(icon, color: color,size: h*0.025,),
               ),
-              const SizedBox(height: 4),
-              Text(
-                value,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
+            ),
+            SizedBox(width: w*0.01),
+            // Wrap the Column in Expanded
+            Expanded(
+              flex: 2,
+              child: SizedBox(
+                //color: Colors.blue,
+                // width: w*0.1,
+                height: h*0.07,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min, // Added to keep it compact
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.bodySmall,
+                      maxLines: 1,
+
+                      overflow: TextOverflow.ellipsis, // Prevents horizontal overflow
+                    ),
+                     SizedBox(height: h*0.003),
+                    Text(
+                      value,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis, // Prevents horizontal overflow
+                    ),
+                  ],
                 ),
               ),
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
+
+      // child: Row(
+      //   children: [
+      //     CircleAvatar(
+      //       backgroundColor: color.withOpacity(0.2),
+      //       child: Icon(icon, color: color),
+      //     ),
+      //     const SizedBox(width: 12),
+      //     Column(
+      //       crossAxisAlignment: CrossAxisAlignment.start,
+      //       mainAxisSize: MainAxisSize.min,
+      //       children: [
+      //         Text(
+      //           title,
+      //           style: Theme.of(context).textTheme.bodySmall,
+      //         ),
+      //         const SizedBox(height: 4),
+      //         Text(
+      //           value,
+      //           style: Theme.of(context).textTheme.titleLarge?.copyWith(
+      //             fontWeight: FontWeight.bold,
+      //           ),
+      //           overflow: TextOverflow.ellipsis,
+      //         ),
+      //       ],
+      //     )
+      //   ],
+      // ),
     );
   }
 }
@@ -81,11 +140,12 @@ class KpiSection extends ConsumerWidget {
         final offerRate =
         interviews == 0 ? 0 : (offers / interviews) * 100;
 
+
         return GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
           physics: const NeverScrollableScrollPhysics(),
-          childAspectRatio: 2.5,
+          childAspectRatio: 2.25,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
           children: [
@@ -128,7 +188,10 @@ class KpiSection extends ConsumerWidget {
           ],
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => SizedBox(
+          height: 100,
+          width: 100,
+          child: const Center(child: CircularProgressIndicator())),
       error: (e, _) => Center(child: Text(e.toString())),
     );
   }

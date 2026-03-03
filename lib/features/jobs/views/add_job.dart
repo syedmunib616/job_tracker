@@ -28,8 +28,9 @@ class _AddJobViewState extends ConsumerState<AddJobView> {
     return Scaffold(
       appBar: AppBar(
           leading: AppDrawer(),
-          title: const Text("Add Job")
+          title: const Text("Add Job"),
       ),
+      drawer: Drawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
