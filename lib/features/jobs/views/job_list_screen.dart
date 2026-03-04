@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/jobs/views/edit_job_view.dart';
+import '../../../core/widget/app_loader.dart';
 import '../view_models/job_view_model.dart';
 import 'package:job_tracker/core/constants/app_colors.dart';
 class JobListView extends ConsumerWidget {
@@ -96,7 +97,7 @@ class JobListView extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                         
-                              /// 🔹 Company Name
+                              // Company Name
                               Text(
                                 job.company,
                                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -104,7 +105,7 @@ class JobListView extends ConsumerWidget {
                         
                               const SizedBox(height: 6),
                         
-                              /// 🔹 Role
+                              // Role
                               Text(
                                 job.role,
                                 style: TextStyle(color: Colors.grey.shade600),
@@ -116,7 +117,7 @@ class JobListView extends ConsumerWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                         
-                                  /// Status Badge
+                                  // Status Badge
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                     decoration: BoxDecoration(
@@ -133,7 +134,7 @@ class JobListView extends ConsumerWidget {
                                     ),
                                   ),
                         
-                                  /// Salary Chip
+                                  // Salary Chip
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                     decoration: BoxDecoration(
@@ -161,7 +162,7 @@ class JobListView extends ConsumerWidget {
               );
             },
           ),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AppLoader()),
         error: (e, _) => Center(child: Text(e.toString())),
       ),
     );

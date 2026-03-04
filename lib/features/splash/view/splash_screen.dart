@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -112,7 +113,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 // ),
 
                 const SizedBox(height: 60),
-
                 // Loading indicator
                 SizedBox(
                   width: 48,

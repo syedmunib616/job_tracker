@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/constants/app_colors.dart';
+import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 
 import '../opt_model/opt_model.dart';
@@ -44,6 +46,7 @@ class _OptSetupViewState extends ConsumerState<OptSetupView> {
             ),
 
             SwitchListTile(
+              activeColor: AppColors.textSecondary,
               title: Text("STEM OPT Eligible"),
               value: stemEligible,
               onChanged: (v) => setState(() => stemEligible = v),
@@ -51,14 +54,15 @@ class _OptSetupViewState extends ConsumerState<OptSetupView> {
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: loading
-                  ? null
+            AppButton(
+              text: "Save OPT",
+              icon: Icons.save,
+              isLoading: loading,
+              onPressed: startDate == null
+                  ? () {}
                   : () {
-                if (startDate == null) return;
-
                 final endDate =
-                startDate!.add(Duration(days: 365)); // auto calc
+                startDate!.add(const Duration(days: 365));
 
                 final opt = OptModel(
                   optStartDate: startDate!,
@@ -67,16 +71,42 @@ class _OptSetupViewState extends ConsumerState<OptSetupView> {
                   stemOptEligible: stemEligible,
                 );
 
-                ref.read(optViewModelProvider.notifier).saveOpt(opt);
+                ref
+                    .read(optViewModelProvider.notifier)
+                    .saveOpt(opt);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("OPT Saved")),
+                  const SnackBar(content: Text("OPT Saved")),
                 );
               },
-              child: loading
-                  ? CircularProgressIndicator()
-                  : Text("Save OPT"),
             ),
+
+            // ElevatedButton(
+            //   onPressed: loading
+            //       ? null
+            //       : () {
+            //     if (startDate == null) return;
+            //
+            //     final endDate =
+            //     startDate!.add(Duration(days: 365)); // auto calc
+            //
+            //     final opt = OptModel(
+            //       optStartDate: startDate!,
+            //       optEndDate: endDate,
+            //       unemploymentDaysUsed: 0,
+            //       stemOptEligible: stemEligible,
+            //     );
+            //
+            //     ref.read(optViewModelProvider.notifier).saveOpt(opt);
+            //
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       SnackBar(content: Text("OPT Saved")),
+            //     );
+            //   },
+            //   child: loading
+            //       ? CircularProgressIndicator()
+            //       : Text("Save OPT"),
+            // ),
           ],
         ),
       ),

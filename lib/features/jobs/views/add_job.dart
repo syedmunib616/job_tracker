@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
+import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/jobs/widget/job_text_field.dart';
 import '../view_models/job_view_model.dart';
@@ -27,10 +29,10 @@ class _AddJobViewState extends ConsumerState<AddJobView> {
 
     return Scaffold(
       appBar: AppBar(
-          leading: AppDrawer(),
+
           title: const Text("Add Job"),
       ),
-      drawer: Drawer(),
+      drawer: AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
@@ -83,10 +85,11 @@ class _AddJobViewState extends ConsumerState<AddJobView> {
 
 
             const SizedBox(height: 20),
-
-            ElevatedButton(
-              onPressed: loading ? null
-                  : () async {
+            AppButton(
+              text: "Save Job",
+              icon: Icons.save,
+              isLoading: loading,
+              onPressed: () async {
                 await ref.read(jobViewModelProvider.notifier).addJob(
                   company: company.text,
                   role: role.text,
@@ -95,11 +98,11 @@ class _AddJobViewState extends ConsumerState<AddJobView> {
                   salary: double.tryParse(salary.text) ?? 0,
                   notes: notes.text,
                 );
-                Navigator.pop(context);
+
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               },
-              child: loading
-                  ? const CircularProgressIndicator()
-                  : const Text("Save Job"),
             ),
           ],
         ),

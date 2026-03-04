@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/employment/models/employment_model.dart';
 import '../view_models/employment_view_model.dart';
@@ -131,7 +132,7 @@ class _EmploymentFormViewState
                 Navigator.pop(context);
               },
               child: loading
-                  ? const CircularProgressIndicator()
+                  ? const AppLoader()
                   : Text(widget.employment == null
                   ? "Save"
                   : "Update"),

@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
 import 'package:job_tracker/features/jobs/view_models/job_view_model.dart';
 
 class ApplicationsPerMonthChart extends ConsumerWidget {
@@ -49,10 +50,7 @@ class ApplicationsPerMonthChart extends ConsumerWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Applications per Month",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+
             const SizedBox(height: 16),
             SizedBox(
               height: MediaQuery.of(context).size.height*0.3,
@@ -96,7 +94,7 @@ class ApplicationsPerMonthChart extends ConsumerWidget {
         );
       },
       loading: () =>
-      const Center(child: CircularProgressIndicator()),
+      const Center(child: AppLoader()),
       error: (e, _) => Center(child: Text(e.toString())),
     );
   }

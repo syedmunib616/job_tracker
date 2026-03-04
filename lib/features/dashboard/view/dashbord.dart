@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/providers/auth_providers.dart';
 import 'package:job_tracker/core/services/notification_service.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
+import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/dashboard/widget/job_status_grid.dart';
 import 'package:job_tracker/features/dashboard/widget/kpi_card.dart';
@@ -13,21 +17,41 @@ import 'package:job_tracker/features/opt/opt_view_model/opt_view_model.dart';
 import 'package:job_tracker/features/opt/view/opt_view.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+import '../../auth/view_models/auth_view_model.dart';
 import '../widget/applications_per_month_chart.dart';
 
 class Dashboard extends ConsumerWidget {
-  const Dashboard({super.key});
+
+   Dashboard({super.key});
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final opt = ref.watch(optProvider);
+    final userAsync = ref.watch(authStateUserProvider);
+
     // final employmentAsync = ref.watch(jobsProvider);
     final employmentAsync = ref.watch(employmentStreamProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Munib Syed"),
+        title:  userAsync.when(
+          data: (user) {
+            return
+              Text(
+                user!.displayName.toString().isNotEmpty?user!.displayName.toString(): user!.email.toString(),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+          },
+          loading: () => const AppLoader(
+           // message: "Loading Email...",
+          ),
+          error: (e, _) => Text(e.toString()),
+        ),
+
         centerTitle: true,
       ),
       drawer:  Drawer(child: AppDrawer()),
@@ -36,17 +60,9 @@ class Dashboard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const UploadResumeView()),
-                );
-              },
-              child: const Text('Upload Resume'),
-            ),
             KpiSection(),
             const SizedBox(height: 24),
+            _SectionHeader(title: 'Applications per Month'),
             const ApplicationsPerMonthChart(),
             const SizedBox(height: 24),
             // Section header + grid
@@ -99,11 +115,11 @@ class Dashboard extends ConsumerWidget {
                     );
                   },
                   loading: () =>
-                  const CircularProgressIndicator(),
+                  AppLoader(),
                   error: (e, _) => Text(e.toString()),
                 );
               },
-              loading: () => const CircularProgressIndicator(),
+              loading: () => AppLoader(),
               error: (e, _) => Text(e.toString()),
             ),
 
@@ -118,9 +134,9 @@ class Dashboard extends ConsumerWidget {
             const SizedBox(height: 32),
 
             // Recent applications
-            _SectionHeader(title: 'Recent Applications'),
-            const SizedBox(height: 12),
-            const RecentApplicationsCard(),
+            // _SectionHeader(title: 'Recent Applications'),
+            // const SizedBox(height: 12),
+            // const RecentApplicationsCard(),
 
             const SizedBox(height: 32),
           ],

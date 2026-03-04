@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
+import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/employment/view_models/resumes_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,6 +16,7 @@ class ResumesListView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('My Resumes')),
+      drawer: AppDrawer(),
       body: resumesAsync.when(
         data: (resumes) {
           if (resumes.isEmpty) return const Center(child: Text('No resumes uploaded.'));
@@ -47,7 +50,7 @@ class ResumesListView extends ConsumerWidget {
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AppLoader()),
         error: (err, _) => Center(child: Text('Error: $err')),
       ),
     );

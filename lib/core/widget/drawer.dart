@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/providers/auth_providers.dart';
 import 'package:job_tracker/features/auth/view_models/auth_view_model.dart';
 import 'package:job_tracker/core/constants/app_colors.dart';
+
+import 'app_loader.dart';
 
 class AppDrawer extends  ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userAsync = ref.watch(authStateUserProvider);
 
 
     return Drawer(
@@ -43,19 +47,30 @@ class AppDrawer extends  ConsumerWidget {
                     child: Icon(Icons.person, size: 50, color: Colors.white),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    "Munib",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.2,
+                    userAsync.when(
+                      data: (user) {
+                        return Column(
+                          children: [
+                            user!.displayName.toString().isNotEmpty?  Text(
+                              user!.displayName.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ):SizedBox(),
+                            Text(
+                              user.email.toString(),
+                              style: TextStyle(color: Colors.white70),
+                            ),
+
+                          ],
+                        );
+                      },
+                      loading: () => const Center(child: AppLoader()),
+                      error: (e, _) => Text(e.toString()),
                     ),
-                  ),
-                  Text(
-                    "munib@example.com",
-                    style: TextStyle(color: Colors.white70),
-                  ),
                 ],
               ),
             ),
@@ -65,12 +80,14 @@ class AppDrawer extends  ConsumerWidget {
               child: ListView(
                 children: [
                   drawerItem(context, Icons.dashboard, "Dashboard", "/auth"),
-                  drawerItem(context, Icons.work, "Job List", "/jobs"),
-                 // drawerItem(context, Icons.add, "Add Job", "/addJob"),
-                  drawerItem(context, Icons.info, "Job Detail", "/detail"),
-                  drawerItem(context, Icons.settings, "Settings", "/settings"),
                   drawerItem(context, Icons.timer, "Opt Setup", "/optedit"),
-                  drawerItem(context, Icons.work, "Employment", "/employement"),
+                  drawerItem(context, Icons.mail, "Job List", "/jobs"),
+                  drawerItem(context, Icons.work, "Employments", "/employement"),
+                 // drawerItem(context, Icons.add, "Add Job", "/addJob"),
+                  drawerItem(context, Icons.note_alt_rounded, "Resumes", "/resumes"),
+                  drawerItem(context, Icons.settings, "Settings", "/settings"),
+
+
                   Divider(color: Colors.white24),
 
                   // drawerItem(context, Icons.logout, "Logout", "/login"),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/constants/app_colors.dart';
+import 'package:job_tracker/core/widget/app_loader.dart';
+import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/employment/view/resumes_list_view.dart';
 import 'package:job_tracker/features/employment/view/upload_resume_view.dart';
 import 'package:job_tracker/features/employment/view_models/employment_view_model.dart';
 
 import 'employment_form_view.dart';
-
 
 class EmploymentListView extends ConsumerWidget {
   const EmploymentListView({super.key});
@@ -21,11 +23,10 @@ class EmploymentListView extends ConsumerWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (_) => const EmploymentFormView()),
+            MaterialPageRoute(builder: (_) => const EmploymentFormView()),
           );
         },
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add, color: AppColors.textSecondary),
       ),
       drawer: AppDrawer(),
       body: Column(
@@ -36,31 +37,58 @@ class EmploymentListView extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton.icon(
+                AppButton(
+                  width: 160,
+                  text: 'Submit',
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const UploadResumeView()),
+                      MaterialPageRoute(
+                        builder: (_) => const UploadResumeView(),
+                      ),
                     );
                   },
-                  icon: const Icon(Icons.upload_file),
-                  label: const Text("Upload Resume"),
+                  icon: Icons.upload_file,
                 ),
-                ElevatedButton.icon(
+                AppButton(
+                  width: 160,
+                  text: 'Submit',
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const ResumesListView()),
+                      MaterialPageRoute(
+                        builder: (_) => const ResumesListView(),
+                      ),
                     );
                   },
-                  icon: const Icon(Icons.list),
-                  label: const Text("My Resumes"),
+                  icon: Icons.list,
                 ),
+
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (_) => const UploadResumeView()),
+                //     );
+                //   },
+                //   icon: const Icon(Icons.upload_file),
+                //   label: const Text("Upload Resume"),
+                // ),
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (_) => const ResumesListView()),
+                //     );
+                //   },
+                //   icon: const Icon(Icons.list),
+                //   label: const Text("My Resumes"),
+                // ),
               ],
             ),
           ),
 
-          // ✅ Employment list
+          // Employment list
           Expanded(
             child: employmentAsync.when(
               data: (jobs) {
@@ -84,13 +112,15 @@ class EmploymentListView extends ConsumerWidget {
                       child: ListTile(
                         title: Text(job.companyName),
                         subtitle: Text(
-                            "${job.startDate.toLocal().toString().split(" ")[0]} - "
-                                "${job.endDate != null ? job.endDate!.toLocal().toString().split(" ")[0] : "Present"}"),
+                          "${job.startDate.toLocal().toString().split(" ")[0]} - "
+                          "${job.endDate != null ? job.endDate!.toLocal().toString().split(" ")[0] : "Present"}",
+                        ),
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => EmploymentFormView(employment: job),
+                              builder: (_) =>
+                                  EmploymentFormView(employment: job),
                             ),
                           );
                         },
@@ -99,7 +129,7 @@ class EmploymentListView extends ConsumerWidget {
                   },
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(child: AppLoader()),
               error: (e, _) => Center(child: Text(e.toString())),
             ),
           ),
