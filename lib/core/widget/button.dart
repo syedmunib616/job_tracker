@@ -75,7 +75,7 @@ class AppButton extends StatelessWidget {
               text,
               style: theme.textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w600,
-                letterSpacing: 0.5,
+                letterSpacing: 0.1,
               ),
             ),
           ],
@@ -84,6 +84,7 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+
 // class AppButton extends StatelessWidget {
 //   final String text;
 //   final VoidCallback onPressed;

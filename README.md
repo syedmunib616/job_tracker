@@ -1,8 +1,8 @@
-#  Job Tracker App — Flutter + Firebase + Riverpod (Enterprise MVVM Architecture)
+# OPTrak — Flutter + Firebase + Riverpod (Enterprise MVVM Architecture)
 
 > **This project follows industry-standard MVVM architecture and demonstrates production-level Flutter engineering practices used in modern US tech companies.**
 
-A scalable Flutter mobile application for job tracking with Firebase authentication, Riverpod state management, and clean enterprise architecture.
+A scalable Flutter mobile application for international students in the U.S. to manage **job applications, employment history, and OPT timelines** while demonstrating modern mobile engineering practices.
 
 This project is built to showcase **professional Flutter engineering skills for US recruiters and tech companies**.
 
@@ -10,17 +10,17 @@ This project is built to showcase **professional Flutter engineering skills for 
 
 # 📌 Overview
 
-The **Job Tracker App** is a modular Flutter application designed for managing job applications while demonstrating:
+**OPTrak** is a modular Flutter application designed to help international students manage job applications and track OPT compliance while demonstrating modern mobile engineering practices.
 
-- Clean architecture
-- Feature-based modular structure
+The application includes:
+
+- Job application tracking
+- Employment history management
+- OPT unemployment countdown logic
 - Firebase authentication
-- Professional error handling
-- Persistent user sessions
-- Dark / Light / System theme modes
-- Scalable MVVM + Riverpod architecture
+- Scalable enterprise Flutter architecture
 
----
+
 
 # ✨ Features
 
@@ -66,6 +66,14 @@ The **Job Tracker App** is a modular Flutter application designed for managing j
 
 ---
 
+# 📄 Resume Management
+
+- Upload resume files (PDF, DOC, DOCX)
+- File size validation
+- Firebase Storage integration
+- Secure file retrieval
+
+---
 # 🏗️ Tech Stack
 
 | Technology | Purpose |
@@ -122,31 +130,36 @@ lib/
 │   ├── services/                       # Firebase & backend wrappers
 │   │   ├── auth_service.dart
 │   │   ├── employment_service.dart
+│   │   ├── firestore_service.dart
 │   │   ├── job_service.dart
+│   │   ├── storage_service.dart
+│   │   ├── notification_service.dart
 │   │   └── opt_service.dart
-│   ├── theme/                          # dark_theme.dart, light_theme.dart
+│   │
+│   ├── theme/                          # app_theme.dart
 │   └── widgets/                        # Global reusable widgets
-│       ├── drawer.dart
-│       └── app_text_field.dart
+│       ├── app_loader.dart
+│       ├── app_text_field.dart
+│       ├── button.dart
+│       └── drawer.dart
 │
 ├── features/                           # Feature-based modular architecture
-│
+│   │
 │   ├── auth/                           # Authentication module
 │   │   ├── models/                     # user_model.dart
 │   │   ├── view_models/                # auth_view_model.dart, auth_state.dart
 │   │   ├── views/                      # login_view.dart, register_view.dart, forget.dart, auth_gate.dart
-│   │   └── widgets/                    # login_background.dart, login_form.dart, auth_button.dart
+│   │   └── widgets/                    # login_background.dart, login_form.dart
 │   │
 │   ├── dashboard/                      # Dashboard & Analytics
 │   │   ├── view_models/                # dashboard_view_model.dart
 │   │   ├── views/                      # dashboard_view.dart
 │   │   └── widgets/                    # UI components
-│   │       ├── application_tile.dart
-│   │       ├── info_row.dart
+│   │       ├── applications_per_month_chart.dart
 │   │       ├── job_stats_chart.dart
-│   │       ├── job_status_grid.dart
-│   │       ├── recent_application_card.dart
-│   │       └── status_card.dart
+│   │       ├── kpi_card.dart
+│   │       ├── kpi_section.dart
+│   │       └── recent_application_card.dart
 │   │
 │   ├── opt/                            # OPT Management Feature
 │   │   ├── models/
@@ -172,7 +185,8 @@ lib/
 │   │
 │   ├── jobs/                           # Job Application CRUD
 │   │   ├── models/                     # job_model.dart
-│   │   ├── view_models/                # job_view_model.dart
+│   │   ├── view_models/            # job_view_model.dart
+│   │   ├── widget/                     # job_text_field.dart
 │   │   └── views/                      # job_list_view.dart, job_detail_screen.dart
 │   │
 │   ├── splash/
@@ -184,7 +198,7 @@ lib/
 │           └── settings_view.dart
 │
 ├── main.dart                            # App entry point & provider setup
-└── routes.dart                          # Centralized navigation
+└── routes.dart                          # Centralized navigation                     # Centralized navigation
 ```
 ---
 

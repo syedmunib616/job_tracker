@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/providers/auth_providers.dart';
 import 'package:job_tracker/features/auth/view_models/auth_view_model.dart';
 import 'package:job_tracker/core/constants/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'app_loader.dart';
 
@@ -47,30 +48,42 @@ class AppDrawer extends  ConsumerWidget {
                     child: Icon(Icons.person, size: 50, color: Colors.white),
                   ),
                   SizedBox(height: 10),
-                    userAsync.when(
-                      data: (user) {
-                        return Column(
-                          children: [
-                            user!.displayName.toString().isNotEmpty?  Text(
-                              user!.displayName.toString(),
-                              style: TextStyle(
+                  userAsync.when(
+                    data: (user) {
+                      if (user == null) {
+                        return const SizedBox();
+                      }
+
+                      final displayName = user.displayName?.isNotEmpty == true
+                          ? user.displayName
+                          : null;
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (displayName != null)
+                            Text(
+                              displayName,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.2,
                               ),
-                            ):SizedBox(),
-                            Text(
-                              user.email.toString(),
-                              style: TextStyle(color: Colors.white70),
                             ),
-
-                          ],
-                        );
-                      },
-                      loading: () => const Center(child: AppLoader()),
-                      error: (e, _) => Text(e.toString()),
+                          Text(
+                            user.email ?? '',
+                            style: const TextStyle(color: Colors.white70),
+                          ),
+                        ],
+                      );
+                    },
+                    loading: () => const Center(child: AppLoader()),
+                    error: (e, _) => Text(
+                      e.toString(),
+                      style: const TextStyle(color: Colors.red),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -105,6 +118,13 @@ class AppDrawer extends  ConsumerWidget {
                       ref.read(authViewModelProvider.notifier).logout();
                     },
                     hoverColor: Colors.white10,
+                  ),
+
+                  ListTile(
+                    title: Text("Privacy Policy"),
+                    onTap: () {
+                      launchUrl(Uri.parse("https://github.com/syedmunib616/job_tracker/blob/main/Privacy%20Policy"));
+                    },
                   )
                 ],
               ),

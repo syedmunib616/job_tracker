@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     ],
                   ),
                   child:  Image.asset(
-                    'assets/splash_logo.jpg',
+                    'assets/logo11.png',
                     width: 200,
                     height: 200,
                     fit: BoxFit.cover,
@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
                 // App name
                 const Text(
-                  'Launch List',
+                  'OPTrak',
                   style: TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.w700,

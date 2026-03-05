@@ -20,7 +20,7 @@ class AuthGate extends ConsumerWidget {
         return Dashboard(); // your dashboard screen
       },
       loading: () => const Scaffold(
-        body: Center(child: AppLoader()),
+        body: Center(child: Center(child: AppLoader())),
       ),
       error: (e, _) => Scaffold(
         body: Center(child: Text("Error: $e")),

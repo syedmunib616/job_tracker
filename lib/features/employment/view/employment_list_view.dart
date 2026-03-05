@@ -16,7 +16,7 @@ class EmploymentListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final employmentAsync = ref.watch(employmentStreamProvider);
-
+    final w=MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(title: const Text("Employment History")),
       floatingActionButton: FloatingActionButton(
@@ -38,8 +38,8 @@ class EmploymentListView extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AppButton(
-                  width: 160,
-                  text: 'Submit',
+                  width: w*0.44,
+                  text: 'Upload Resume',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -52,7 +52,7 @@ class EmploymentListView extends ConsumerWidget {
                 ),
                 AppButton(
                   width: 160,
-                  text: 'Submit',
+                  text: 'Resumes',
                   onPressed: () {
                     Navigator.push(
                       context,

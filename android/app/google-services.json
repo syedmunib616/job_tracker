@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:242078762753:android:56e7be388cae5c7851fd00",
         "android_client_info": {
-          "package_name": "com.example.job_tracker"
+          "package_name": "app.munib.job_tracker"
         }
       },
       "oauth_client": [],

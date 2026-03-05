@@ -6,9 +6,8 @@ import 'package:job_tracker/core/services/notification_service.dart';
 import 'package:job_tracker/core/widget/app_loader.dart';
 import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
-import 'package:job_tracker/features/dashboard/widget/job_status_grid.dart';
+import 'package:job_tracker/features/dashboard/widget/kpi_section.dart';
 import 'package:job_tracker/features/dashboard/widget/kpi_card.dart';
-import 'package:job_tracker/features/dashboard/widget/opt_countdown_card.dart';
 import 'package:job_tracker/features/dashboard/widget/recent_application_card.dart' show RecentApplicationsCard;
 import 'package:job_tracker/features/employment/view/upload_resume_view.dart';
 import 'package:job_tracker/features/employment/view_models/employment_view_model.dart';
@@ -38,13 +37,21 @@ class Dashboard extends ConsumerWidget {
       appBar: AppBar(
         title:  userAsync.when(
           data: (user) {
-            return
-              Text(
-                user!.displayName.toString().isNotEmpty?user!.displayName.toString(): user!.email.toString(),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              );
+            // return
+            if (user == null) {
+              return const SizedBox(); // or loader
+            }
+
+            final name = user.displayName?.isNotEmpty == true
+                ? user.displayName!
+                : user.email ?? '';
+
+            return Text(
+              name,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            );
           },
           loading: () => const AppLoader(
            // message: "Loading Email...",
@@ -60,6 +67,16 @@ class Dashboard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // GestureDetector(
+            //   onTap: (){
+            //     NotificationService().testSchedule();
+            //   },
+            //   child : Container(
+            //     height: 100,
+            //     width: 100,
+            //     child: Text("submit"),
+            //   ),
+            // ),
             KpiSection(),
             const SizedBox(height: 24),
             _SectionHeader(title: 'Applications per Month'),
@@ -120,7 +137,11 @@ class Dashboard extends ConsumerWidget {
                 );
               },
               loading: () => AppLoader(),
-              error: (e, _) => Text(e.toString()),
+              error: (e, _) {
+                print(":::::::::::$e");
+                return Text("No Data");
+
+              }
             ),
 
             // opt.when(

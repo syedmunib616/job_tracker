@@ -10,7 +10,7 @@
         android:name="com.google.firebase.messaging.default_notification_channel_id"
         android:value="channel_id"/>
     <application
-        android:label="job_tracker"
+        android:label="OPTrak"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <receiver

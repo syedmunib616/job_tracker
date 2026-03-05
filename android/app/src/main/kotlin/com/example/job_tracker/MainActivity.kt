@@ -1,4 +1,4 @@
-package com.example.job_tracker
+package app.munib.job_tracker
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -59,12 +59,12 @@ class SignUpScreen extends ConsumerWidget {
                           ),
                         ),
 
-                        const SizedBox(height: 20),
-                        AppTextField(
-                          controller: nameController,
-                          hint: "Full Name",
-                          iconData: Icons.person,
-                        ),
+                        // const SizedBox(height: 20),
+                        // AppTextField(
+                        //   controller: nameController,
+                        //   hint: "Full Name",
+                        //   iconData: Icons.person,
+                        // ),
 
 
                         const SizedBox(height: 15),

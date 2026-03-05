@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_tracker/core/constants/app_colors.dart';
 import 'package:job_tracker/core/widget/app_loader.dart';
 import 'package:job_tracker/features/jobs/view_models/job_view_model.dart';
 
@@ -41,6 +42,7 @@ class ApplicationsPerMonthChart extends ConsumerWidget {
               BarChartRodData(
                 toY: count.toDouble(),
                 width: 18,
+                color: AppColors.textSecondary,
                 borderRadius: BorderRadius.circular(6),
               ),
             ],
