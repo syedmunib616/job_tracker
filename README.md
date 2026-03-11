@@ -20,6 +20,18 @@ The application includes:
 - Firebase authentication
 - Scalable enterprise Flutter architecture
 
+## 📱 App Screenshots
+
+| Login | Dashboard |
+|------|------|
+| ![](screenshots/login.png) | ![](screenshots/dashboard.png) |
+
+| Dashboard Opt                   | Navigation Drawer |
+|---------------------------------|------|
+| ![](screenshots/dashboard2.png) | ![](screenshots/drawer.png) |
+
+| Employment Tracker | Job Applications |
+|------|------|
 
 
 # ✨ Features
@@ -87,17 +99,19 @@ The application includes:
 | Material 3 | Modern UI design |
 
 ---
-# 📸 Screenshots
 
-*(Add screenshots later)*
+## 💼 Engineering Skills Demonstrated
 
-### Login Screen
-![Login](screenshots/login.png)
+- Scalable Flutter architecture (MVVM)
+- Riverpod state management
+- Firebase Authentication & Firestore integration
+- Modular feature-based code organization
+- Clean separation of UI, business logic, and services
+- Production-level error handling
 
-### Dashboard Screen
-![Dashboard](screenshots/dashboard.png)
 
 ---
+
 
 # ⚙️ Getting Started
 
@@ -118,7 +132,19 @@ git clone https://github.com/syedmunib616/job-tracker.git
 cd job-tracker
 ```
 ---
+## 🧩 Architecture Overview
 
+The application follows a clean MVVM architecture with Riverpod for state management.
+
+UI (Views)
+↓
+ViewModels (State + Business Logic)
+↓
+Services (Firebase / API Layer)
+↓
+Firebase (Authentication, Firestore, Storage)
+
+---
 # 📂 Project Architecture (Enterprise MVVM + Feature-Based)
 
 ```text
@@ -186,7 +212,7 @@ lib/
 │   ├── jobs/                           # Job Application CRUD
 │   │   ├── models/                     # job_model.dart
 │   │   ├── view_models/            # job_view_model.dart
-│   │   ├── widget/                     # job_text_field.dart
+│   │   ├── widgets/                     # job_text_field.dart
 │   │   └── views/                      # job_list_view.dart, job_detail_screen.dart
 │   │
 │   ├── splash/
