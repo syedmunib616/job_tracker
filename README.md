@@ -62,7 +62,6 @@ The application includes:
 
 ## 📊 Dashboard
 - Job application statistics grid
-- Recent applications list
 - OPT countdown tracker (logic layer implemented)
 - Future-ready Firestore analytics integration
 

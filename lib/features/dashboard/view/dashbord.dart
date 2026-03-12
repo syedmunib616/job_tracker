@@ -35,31 +35,31 @@ class Dashboard extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  userAsync.when(
-          data: (user) {
-            // return
-            if (user == null) {
-              return const SizedBox(); // or loader
-            }
-
-            final name = user.displayName?.isNotEmpty == true
-                ? user.displayName!
-                : user.email ?? '';
-
-            return Text(
-              name,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          },
-          loading: () => const AppLoader(
-           // message: "Loading Email...",
-          ),
-          error: (e, _) => Text(e.toString()),
-        ),
-
-        centerTitle: true,
+        // title:  userAsync.when(
+        //   data: (user) {
+        //     // return
+        //     if (user == null) {
+        //       return const SizedBox(); // or loader
+        //     }
+        //
+        //     final name = user.displayName?.isNotEmpty == true
+        //         ? user.displayName!
+        //         : user.email ?? '';
+        //
+        //     return Text(
+        //       name,
+        //       style: Theme.of(context).textTheme.titleLarge?.copyWith(
+        //         fontWeight: FontWeight.bold,
+        //       ),
+        //     );
+        //   },
+        //   loading: () => const AppLoader(
+        //    // message: "Loading Email...",
+        //   ),
+        //   error: (e, _) => Text(e.toString()),
+        // ),
+        //
+        // centerTitle: true,
       ),
       drawer:  Drawer(child: AppDrawer()),
       body: SingleChildScrollView(
