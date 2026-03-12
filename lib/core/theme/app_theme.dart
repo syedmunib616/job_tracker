@@ -1,5 +1,6 @@
 // core/theme/app_theme.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:job_tracker/core/constants/app_colors.dart' ;
 
 final lightTheme = ThemeData(
@@ -22,11 +23,13 @@ final lightTheme = ThemeData(
   //   elevation: 4,
   //   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
   // ),
-  textTheme: const TextTheme(
+    textTheme: GoogleFonts.poppinsTextTheme(
+
+      const TextTheme(
     bodyLarge: TextStyle(color: AppColors.textPrimary),
     bodyMedium: TextStyle(color: AppColors.textSecondary),
     // ...
-  ),
+  ),)
   // etc.
 );
 
@@ -50,9 +53,12 @@ final darkTheme = ThemeData(
   //   elevation: 2,
   //   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
   // ),
-  textTheme: const TextTheme(
+  // textTheme: const TextTheme(
+  textTheme: GoogleFonts.poppinsTextTheme(
+    const TextTheme(
     bodyLarge: TextStyle(color: AppColors.darkTextPrimary),
     bodyMedium: TextStyle(color: AppColors.darkTextSecondary),
     // ...
-  ),
+    ),
+  )
 );

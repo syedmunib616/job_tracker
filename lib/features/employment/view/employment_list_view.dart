@@ -38,7 +38,7 @@ class EmploymentListView extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AppButton(
-                  width: w*0.44,
+                  width: w*0.46,
                   text: 'Upload Resume',
                   onPressed: () {
                     Navigator.push(
