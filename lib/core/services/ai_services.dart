@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class AIService {
   final Dio _dio = Dio();
 
-
+  final String _apiKey = "AIzaSyAX_tqcsqS85IfYMmRxWcYXSu3silEy6qM";
 
   Future<String> generateResponse(String prompt) async {
     try {

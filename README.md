@@ -50,6 +50,8 @@ The application includes:
 
 ---
 
+
+
 ## 🧠 Architecture & State Management
 - **MVVM (Model–View–ViewModel)**
 - **Riverpod for state management**
@@ -77,7 +79,7 @@ The application includes:
 
 ---
 
-# 📄 Resume Management
+## 📄 Resume Management
 
 - Upload resume files (PDF, DOC, DOCX)
 - File size validation
@@ -85,6 +87,36 @@ The application includes:
 - Secure file retrieval
 
 ---
+## 🤖 AI Tools – Powered by Gemini
+
+This project includes an AI module integrated into the Job Tracker app to help international students improve their job applications using Google's Gemini API.
+
+The AI features are built using Flutter, MVVM architecture, Riverpod for state management, and Dio for networking.
+
+## 🚀 Features
+
+### 📄 Resume Analyzer
+- Analyzes resume content
+- Provides improvement suggestions
+- Helps optimize for ATS systems
+
+### 📑 Job Description Analyzer
+- Extracts key skills from job descriptions
+- Identifies missing skills in resume
+- Helps match resume to job requirements
+
+### ✉️ Cover Letter Generator
+- Generates personalized cover letters
+- Based on job title and company
+- Saves time for job applications
+
+### 🎯 Interview Questions Generator
+- Generates role-based interview questions
+- Helps users prepare for interviews
+- Improves confidence
+
+---
+
 # 🏗️ Tech Stack
 
 | Technology | Purpose |
@@ -170,6 +202,18 @@ lib/
 │
 ├── features/                           # Feature-based modular architecture
 │   │
+│   ├── ai_tools/
+│   │      ├── views/
+│   │      │    ├── resume_analyzer_view.dart
+│   │      │    ├── job_description_analyzer_view.dart
+│   │      │    ├── cover_letter_view.dart
+│   │      │    └── interview_questions_view.dart
+│   │      │
+│   │      ├── view_models/
+│   │      │    └── ai_view_model.dart
+│   │      │
+│   │      └── widgets/
+│   │           └── ai_input_field.dart
 │   ├── auth/                           # Authentication module
 │   │   ├── models/                     # user_model.dart
 │   │   ├── view_models/                # auth_view_model.dart, auth_state.dart
