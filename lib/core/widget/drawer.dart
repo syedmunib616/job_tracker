@@ -98,8 +98,8 @@ class AppDrawer extends  ConsumerWidget {
                   drawerItem(context, Icons.work, "Employments", "/employement"),
                  // drawerItem(context, Icons.add, "Add Job", "/addJob"),
                   drawerItem(context, Icons.note_alt_rounded, "Resumes", "/resumes"),
+                  drawerItem(context, Icons.cloud, "Ai tools", "/ai-tools"),
                   drawerItem(context, Icons.settings, "Settings", "/settings"),
-
 
                   Divider(color: Colors.white24),
 
