@@ -6,6 +6,18 @@ import '../../../core/services/ai_services.dart';
 final aiProvider =
 StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
 
+final resumeAnalyzerProvider =
+StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
+
+final jobAnalyzerProvider =
+StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
+
+final coverLetterProvider =
+StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
+
+final interviewQuestionsProvider =
+StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
+
 class AIViewModel extends StateNotifier<String?> {
   AIViewModel() : super(null);
 
