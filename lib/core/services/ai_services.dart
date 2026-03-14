@@ -3,7 +3,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import '../constants/keys.dart';
 
 class AIService {
-  final Dio _dio = Dio();
+
 
   Future<String> generateResponse(String prompt) async {
 
