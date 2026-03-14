@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../constants/api_keys.dart';
+
 class AIService {
   final Dio _dio = Dio();
 
-  // final String _apiKey = "AIzaSyAX_tqcsqS85IfYMmRxWcYXSu3silEy6qM";
-  final String _apiKey = "AIzaSyCYXQjM-Ooh4-hzjnOen6_pWNUWmS4utyQ";
   Future<String> generateResponse(String prompt) async {
 
     try {
@@ -14,7 +14,7 @@ class AIService {
 
         model: 'gemini-3.1-flash-lite-preview',
         // model: 'gemini-1.5-flash',
-        apiKey: _apiKey,
+        apiKey: ApiKeys.geminiKey,
       );
 
       final response = await model.generateContent([
