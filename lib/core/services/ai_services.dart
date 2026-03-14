@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:job_tracker/core/constants/key.dart';
 
-import '../constants/api_keys.dart';
 
 class AIService {
 
