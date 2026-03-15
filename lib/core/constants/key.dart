@@ -1,3 +1,3 @@
 class ApiKeys {
-  static const geminiKey = "";
+  static const geminiKey = "AIzaSyCtjk9MIs-lKRoSAxsWxkXbbia8cOwJaXw";
 }

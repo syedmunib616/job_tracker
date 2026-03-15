@@ -10,6 +10,7 @@ import 'features/ai_tools/view/cover_letter_view.dart';
 import 'features/ai_tools/view/interview_questions_view.dart';
 import 'features/ai_tools/view/job_description_analyzer_view.dart';
 import 'features/ai_tools/view/resume_analyzer_view.dart';
+import 'features/ai_tools/view/resume_button.dart';
 import 'features/dashboard/view/dashbord.dart';
 import 'features/employment/view/employment_list_view.dart';
 import 'features/employment/view/resumes_list_view.dart';
@@ -36,6 +37,7 @@ class AppRoutes{
      '/job-analyzer': (context) => const JobDescriptionAnalyzerView(),
      '/cover-letter': (context) => const CoverLetterView(),
      '/interview-questions': (context) => const InterviewQuestionsView(),
+     '/resume-button': (context) => const ResumeButton(),
    };
 
 }

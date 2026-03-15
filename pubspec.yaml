@@ -57,6 +57,7 @@ dependencies:
   dio: ^5.9.2
   google_generative_ai: ^0.4.7
   flutter_markdown: ^0.7.3
+  syncfusion_flutter_pdf: ^24.1.41
 
 dev_dependencies:
   flutter_test:

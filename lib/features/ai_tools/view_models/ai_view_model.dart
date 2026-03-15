@@ -33,4 +33,26 @@ class AIViewModel extends StateNotifier<String?> {
       state = "Something went wrong";
     }
   }
+
+
+  Future<void> analyzeResume(String resumeText) async {
+    state = "Analyzing resume...";
+
+    final prompt = """
+    You are a professional resume reviewer.
+    
+    Analyze the following resume and give suggestions to improve it for ATS systems.
+    
+    Resume:
+    $resumeText
+    """;
+
+    try {
+      final result = await _aiService.generateResponse(prompt);
+      state = result;
+    } catch (e) {
+      state = "Failed to analyze resume";
+    }
+  }
+
 }

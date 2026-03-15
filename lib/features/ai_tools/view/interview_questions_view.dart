@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/button.dart';
 import '../../../core/constants/app_colors.dart';
 import '../view_models/ai_view_model.dart';
-import 'package:flutter_markdown_latex/flutter_markdown_latex.dart';
 class InterviewQuestionsView extends ConsumerWidget {
   const InterviewQuestionsView({super.key});
 
