@@ -34,13 +34,12 @@ class JobDescriptionAnalyzerView extends ConsumerWidget {
 
             AppButton(
               width: w*0.52,
-              text: 'Analyze Resume',
+              text: 'Analyze Job',
                 onPressed: () {
                   final prompt =
                       "Extract the required skills from this job description:\n${controller.text}";
 
-                  ref.read(jobAnalyzerProvider.notifier)
-                      .generateAIResponse(prompt);
+                  ref.read(jobAnalyzerProvider.notifier).generateAIResponse(prompt);
                 },
               icon: Icons.document_scanner,
             ),

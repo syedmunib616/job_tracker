@@ -32,14 +32,15 @@ class CoverLetterView extends ConsumerWidget {
             ),
 
             const SizedBox(height: 10),
+
             AppButton(
               width: w*0.62,
               text: 'Generate Cover Letter',
               onPressed: () {
                 final prompt =
                     "Write a professional cover letter for this job:\n${controller.text}";
-                ref.read(coverLetterProvider.notifier)
-                    .generateAIResponse(prompt);
+                print("::::::::: ${controller.text}");
+                ref.read(coverLetterProvider.notifier).generateAIResponse(prompt);
               },
               icon: Icons.upload_file,
             ),
@@ -53,7 +54,9 @@ class CoverLetterView extends ConsumerWidget {
             //       },
             //       child: const Text("Generate Cover Letter"),
             //   ),
+
             const SizedBox(height: 10),
+
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
