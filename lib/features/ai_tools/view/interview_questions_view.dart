@@ -24,7 +24,7 @@ class InterviewQuestionsView extends ConsumerWidget {
             TextField(
               controller: controller,
               decoration: const InputDecoration(
-                hintText: "Enter job role (e.g. Flutter Developer)",
+                hintText: "Enter job role.",
                 border: OutlineInputBorder(),
               ),
             ),
