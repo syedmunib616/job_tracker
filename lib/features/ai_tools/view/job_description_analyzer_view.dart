@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/button.dart';
+import 'package:job_tracker/features/ai_tools/widgets/Ai_output.dart';
 import '../../../core/constants/app_colors.dart';
 import '../view_models/ai_view_model.dart';
 
@@ -44,16 +45,6 @@ class JobDescriptionAnalyzerView extends ConsumerWidget {
               icon: Icons.document_scanner,
             ),
 
-            // ElevatedButton(
-            //   onPressed: () {
-            //     final prompt =
-            //         "Extract the required skills from this job description:\n${controller.text}";
-            //
-            //     ref.read(jobAnalyzerProvider.notifier)
-            //         .generateAIResponse(prompt);
-            //   },
-            //   child: const Text("Analyze Job"),
-            // ),
 
 
             const SizedBox(height: 20),
@@ -90,21 +81,23 @@ class JobDescriptionAnalyzerView extends ConsumerWidget {
                       ),
                     ),
                     const Divider(height: 1),
-                    // Markdown Content
-                    Expanded(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(16),
-                        child: MarkdownBody(
-                          data: aiResponse ?? "AI result will appear here...",
-                          selectable: true,
-                          styleSheet: MarkdownStyleSheet(
-                            h3: const TextStyle(color: AppColors.textSecondary, fontWeight: FontWeight.bold, height: 2),
-                            p: const TextStyle(fontSize: 15, height: 1.5),
-                            blockSpacing: 12,
-                          ),
-                        ),
-                      ),
-                    ),
+                    AiOutput(aiResult: aiResponse),
+
+                    // // Markdown Content
+                    // Expanded(
+                    //   child: SingleChildScrollView(
+                    //     padding: const EdgeInsets.all(16),
+                    //     child: MarkdownBody(
+                    //       data: aiResponse ?? "AI result will appear here...",
+                    //       selectable: true,
+                    //       styleSheet: MarkdownStyleSheet(
+                    //         h3: const TextStyle(color: AppColors.textSecondary, fontWeight: FontWeight.bold, height: 2),
+                    //         p: const TextStyle(fontSize: 15, height: 1.5),
+                    //         blockSpacing: 12,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

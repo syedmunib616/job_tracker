@@ -17,22 +17,7 @@ class AIToolsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //
-            // const Text(
-            //   "AI Tools",
-            //   style: TextStyle(
-            //     fontSize: 22,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
 
-            // const SizedBox(height: 8),
-            //
-            // Container(
-            //   height: 2,
-            //   width: 120,
-            //   color: Colors.grey,
-            // ),
 
             const SizedBox(height: 30),
 

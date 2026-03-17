@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/button.dart';
+import 'package:job_tracker/features/ai_tools/widgets/Ai_output.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../core/constants/app_colors.dart';
@@ -55,11 +56,6 @@ class ResumeButton extends ConsumerWidget {
         child: Column(
           children: [
 
-            // Upload Button
-            // ElevatedButton(
-            //   onPressed: () => uploadResume(ref),
-            //   child: const Text("Upload Resume"),
-            // ),
 
             AppButton(
               width: w*0.41,
@@ -103,20 +99,7 @@ class ResumeButton extends ConsumerWidget {
                     ),
                     const Divider(height: 1),
                     // Markdown Content
-                    Expanded(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(16),
-                        child: MarkdownBody(
-                          data: aiResult ?? "AI result will appear here...",
-                          selectable: true,
-                          styleSheet: MarkdownStyleSheet(
-                            h3: const TextStyle(color: AppColors.textSecondary, fontWeight: FontWeight.bold, height: 2),
-                            p: const TextStyle(fontSize: 15, height: 1.5),
-                            blockSpacing: 12,
-                          ),
-                        ),
-                      ),
-                    ),
+                    AiOutput(aiResult: aiResult),
                   ],
                 ),
               ),
@@ -128,3 +111,4 @@ class ResumeButton extends ConsumerWidget {
     );
   }
 }
+
