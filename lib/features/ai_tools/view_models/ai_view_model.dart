@@ -9,6 +9,10 @@ StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
 final resumeAnalyzerProvider =
 StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
 
+final resumeMatchAnalyzerProvider =
+StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
+
+
 final jobAnalyzerProvider =
 StateNotifierProvider<AIViewModel, String?>((ref) => AIViewModel());
 
@@ -52,6 +56,36 @@ class AIViewModel extends StateNotifier<String?> {
       state = result;
     } catch (e) {
       state = "Failed to analyze resume";
+    }
+  }
+
+  Future<void> analyzeMatch(String resumeText, String jobDesc) async {
+    state = "Analyzing match...";
+
+    final prompt = """
+          You are an ATS (Applicant Tracking System).
+          
+          Compare the resume and job description.
+          
+          Return:
+          1. Match score (0-100)
+          2. Matching skills
+          3. Missing skills
+          4. Suggestions to improve the resume
+          
+          Resume:
+          $resumeText
+          
+          Job Description:
+          $jobDesc
+          """;
+
+    try {
+      final result = await _aiService.generateResponse(prompt);
+      state = result;
+    } catch (e) {
+      print(":::$e");
+      state = "Failed to analyze match";
     }
   }
 

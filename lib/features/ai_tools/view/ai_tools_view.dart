@@ -20,7 +20,9 @@ class AIToolsView extends StatelessWidget {
 
 
             const SizedBox(height: 30),
+            BuildToolCardAI(context: context, title: "Resume vs Job Match Score", icon: Icons.description, route: "/resume-match"),
 
+            const SizedBox(height: 16),
             BuildToolCardAI(context: context, title: "Resume Analyzer", icon: Icons.description, route: "/resume-analyzer"),
 
             const SizedBox(height: 16),
