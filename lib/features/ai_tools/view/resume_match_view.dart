@@ -141,7 +141,7 @@ class _ResumeMatchViewState extends ConsumerState<ResumeMatchView> {
                               children: matching.map<Widget>((skill) {
                                 return Chip(
 
-                                  label:  Text(skill,style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  label:  Text(skill,style: Theme.of(context).textTheme.bodySmall?.copyWith(color:  Colors.black
 
                                   ),),
                                   backgroundColor: Colors.green.shade100,
@@ -160,7 +160,7 @@ class _ResumeMatchViewState extends ConsumerState<ResumeMatchView> {
                               spacing: 8,
                               children: missing.map<Widget>((skill) {
                                 return Chip(
-                                  label: Text(skill,style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  label: Text(skill,style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black
 
                                   ),),
                                   backgroundColor: Colors.red.shade100,

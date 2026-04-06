@@ -20,7 +20,7 @@ class UploadResumeView extends ConsumerWidget {
             ? const CircularProgressIndicator()
             :
         AppButton(
-          width: 200,
+          width: 220,
           text: 'Upload Resume',
           onPressed: () async {
             final result = await FilePicker.platform.pickFiles(

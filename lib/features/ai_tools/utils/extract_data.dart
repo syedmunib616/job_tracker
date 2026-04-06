@@ -1,7 +1,7 @@
 class ExtractData {
 
   Map<String, dynamic> parseAIResponse(String response) {
-    // 🔹 SCORE (handles 82/100 or 82%)
+    //  SCORE (handles 82/100 or 82%)
     final scoreRegex = RegExp(r'(\d{1,3})\s*/\s*100|(\d{1,3})%');
     final scoreMatch = scoreRegex.firstMatch(response);
     final score = int.tryParse(
@@ -9,7 +9,7 @@ class ExtractData {
     ) ??
         0;
 
-    // 🔹 EXTRACT SECTION TEXT
+    //  EXTRACT SECTION TEXT
     String extractSection(String title) {
       final regex = RegExp(
         '$title[\\s\\S]*?\\n([\\s\\S]*?)(?=\\n---|\\n###|\\Z)',
@@ -20,7 +20,7 @@ class ExtractData {
       return match?.group(1) ?? "";
     }
 
-    // 🔹 CLEAN SKILLS
+    //  CLEAN SKILLS
     List<String> cleanSkills(String text) {
       return text
           .replaceAll(RegExp(r'[\*\•]'), '') // remove bullets
@@ -33,7 +33,7 @@ class ExtractData {
           .toList();
     }
 
-    // 🔹 GET SECTIONS
+    //  GET SECTIONS
     final matchingRaw = extractSection("Matching Skills");
     final missingRaw = extractSection("Missing Skills");
 
@@ -46,26 +46,6 @@ class ExtractData {
       "missing": missingSkills,
     };
   }
-  // Map<String, dynamic> parseAIResponse(String response) {
-  //   final scoreRegex = RegExp(r'Match Score:\s*(\d+)');
-  //   final matchScore = scoreRegex.firstMatch(response);
-  //   final score = int.tryParse(matchScore?.group(1) ?? "0") ?? 0;
-  //
-  //   List<String> extractSkills(String title) {
-  //     final regex = RegExp('$title:\\s*(.*)');
-  //     final match = regex.firstMatch(response);
-  //     if (match == null) return [];
-  //     return match.group(1)!.split(',').map((e) => e.trim()).toList();
-  //   }
-  //
-  //   final matchingSkills = extractSkills("Matching Skills");
-  //   final missingSkills = extractSkills("Missing Skills");
-  //
-  //   return {
-  //     "score": score,
-  //     "matching": matchingSkills,
-  //     "missing": missingSkills,
-  //   };
-  // }
+
 
 }

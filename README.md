@@ -14,10 +14,11 @@ This project is built to showcase **professional Flutter engineering skills for 
 
 The application includes:
 
+- AI Tools
 - Job application tracking
 - Employment history management
 - OPT unemployment countdown logic
-- Firebase authentication
+- Firebase authentication and secure data storage
 - Scalable enterprise Flutter architecture
 
 ## 📱 App Screenshots
@@ -35,6 +36,60 @@ The application includes:
 
 
 # ✨ Features
+
+## 🤖 AI Integration
+
+This app uses Google Generative AI (Gemini) to:
+
+- Analyze resumes
+- Compare with job descriptions
+- Generate ATS-friendly insights
+
+Custom prompt engineering ensures structured responses for:
+
+- Match Score extraction
+- Skill classification
+- Resume improvement suggestions
+### 🚀 Features
+
+#### 📄 Resume Analyzer
+- 📄 Upload Resume (PDF)
+- 🔍 Convert Resume → Text (PDF parsing using Syncfusion)
+- 🤖 AI Resume Analysis (Gemini / Google Generative AI)
+- 📊 Resume vs Job Description Match Score
+- 🟢 Matching Skills Detection
+- 🔴 Missing Skills Identification
+- 📈 Visual Match Score (Progress Bar UI)
+- 🏷️ Skill Tags UI (Chips for better UX)
+- 📋 Copy AI Output to Clipboard
+
+#### 📑 Job Description Analyzer
+- Extracts key skills from job descriptions
+- Compares with user resume to identify skill gaps
+- Generates a match score for better targeting
+
+#### ✉️ Cover Letter Generator
+- AI-generated personalized cover letters
+- Tailored to specific job titles and companies
+- Saves time while improving application quality
+
+#### 🎯 Interview Questions Generator
+- Generates role-based interview questions
+- Helps users prepare efficiently
+- Boosts confidence for interviews
+
+### 🧠 How It Works 
+1. User uploads resume (PDF)
+2. App extracts text using **Syncfusion PDF parser**
+3. User pastes the job description
+4. AI analyzes the resume against the job role
+5. Response is parsed into:
+    - Match Score
+    - Matching Skills
+    - Missing Skills
+6. Results are displayed using an **interactive UI** with progress bars and skill chips
+
+---
 
 ## 🔐 Authentication
 - Firebase Email/Password Authentication
@@ -80,40 +135,11 @@ The application includes:
 ---
 
 ## 📄 Resume Management
-
+You can save your resume in this app.
 - Upload resume files (PDF, DOC, DOCX)
 - File size validation
 - Firebase Storage integration
 - Secure file retrieval
-
----
-## 🤖 AI Tools – Powered by Gemini
-
-This project includes an AI module integrated into the Job Tracker app to help international students improve their job applications using Google's Gemini API.
-
-The AI features are built using Flutter, MVVM architecture, Riverpod for state management, and Dio for networking.
-
-## 🚀 Features
-
-### 📄 Resume Analyzer
-- Analyzes resume content
-- Provides improvement suggestions
-- Helps optimize for ATS systems
-
-### 📑 Job Description Analyzer
-- Extracts key skills from job descriptions
-- Identifies missing skills in resume
-- Helps match resume to job requirements
-
-### ✉️ Cover Letter Generator
-- Generates personalized cover letters
-- Based on job title and company
-- Saves time for job applications
-
-### 🎯 Interview Questions Generator
-- Generates role-based interview questions
-- Helps users prepare for interviews
-- Improves confidence
 
 ---
 
@@ -128,6 +154,8 @@ The AI features are built using Flutter, MVVM architecture, Riverpod for state m
 | Riverpod | State management |
 | MVVM Architecture | Scalable clean architecture |
 | Material 3 | Modern UI design |
+
+
 
 ---
 
@@ -180,17 +208,19 @@ Firebase (Authentication, Firestore, Storage)
 
 ```text
 lib/
-├── core/                              # App-wide shared & global logic
+├── core/                               # App-wide shared & global logic
 │   ├── errors/                         # auth_failure.dart
 │   ├── providers/                      # auth_providers.dart, theme_providers.dart
-│   ├── constants/                      # app_colors.dart, app_strings.dart
+│   ├── constants/                      # app_colors.dart, app_strings.dart, key.dart
 │   ├── services/                       # Firebase & backend wrappers
 │   │   ├── auth_service.dart
+│   │   ├── ai_services.dart
 │   │   ├── employment_service.dart
 │   │   ├── firestore_service.dart
 │   │   ├── job_service.dart
 │   │   ├── storage_service.dart
 │   │   ├── notification_service.dart
+│   │   ├── pdf_text_extractor_service.dart
 │   │   └── opt_service.dart
 │   │
 │   ├── theme/                          # app_theme.dart
@@ -205,6 +235,9 @@ lib/
 │   ├── ai_tools/
 │   │      ├── views/
 │   │      │    ├── resume_analyzer_view.dart
+│   │      │    ├── ai_tools_view.dart
+│   │      │    ├── resume_button.dart
+│   │      │    ├── resume_match_view.dart
 │   │      │    ├── job_description_analyzer_view.dart
 │   │      │    ├── cover_letter_view.dart
 │   │      │    └── interview_questions_view.dart
@@ -213,7 +246,8 @@ lib/
 │   │      │    └── ai_view_model.dart
 │   │      │
 │   │      └── widgets/
-│   │           └── ai_input_field.dart
+│   │           ├── Ai_output.dart
+│   │           └── build_tool_card.dart
 │   ├── auth/                           # Authentication module
 │   │   ├── models/                     # user_model.dart
 │   │   ├── view_models/                # auth_view_model.dart, auth_state.dart
@@ -254,7 +288,7 @@ lib/
 │   │
 │   ├── jobs/                           # Job Application CRUD
 │   │   ├── models/                     # job_model.dart
-│   │   ├── view_models/            # job_view_model.dart
+│   │   ├── view_models/                # job_view_model.dart
 │   │   ├── widgets/                     # job_text_field.dart
 │   │   └── views/                      # job_list_view.dart, job_detail_screen.dart
 │   │
@@ -310,6 +344,15 @@ This project demonstrates:
 - Modern Riverpod state management
 - Clean UI separation and reusable widgets
 - Real-world authentication and error handling
+
+---
+## 🔐 Security
+
+Sensitive data such as API keys are not included in the repository.
+
+Use your own API key in:
+
+lib/core/constants/api_keys.dart
 
 ---
 

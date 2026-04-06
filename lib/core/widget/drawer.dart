@@ -14,7 +14,6 @@ class AppDrawer extends  ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userAsync = ref.watch(authStateUserProvider);
 
-
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -93,16 +92,14 @@ class AppDrawer extends  ConsumerWidget {
               child: ListView(
                 children: [
                   drawerItem(context, Icons.dashboard, "Dashboard", "/auth"),
+                  drawerItem(context, Icons.cloud, "Ai tools", "/ai-tools"),
                   drawerItem(context, Icons.timer, "Opt Setup", "/optedit"),
                   drawerItem(context, Icons.mail, "Job List", "/jobs"),
                   drawerItem(context, Icons.work, "Employments", "/employement"),
-                 // drawerItem(context, Icons.add, "Add Job", "/addJob"),
+                  // drawerItem(context, Icons.add, "Add Job", "/addJob"),
                   drawerItem(context, Icons.note_alt_rounded, "Resumes", "/resumes"),
-                  drawerItem(context, Icons.cloud, "Ai tools", "/ai-tools"),
                   drawerItem(context, Icons.settings, "Settings", "/settings"),
-
                   Divider(color: Colors.white24),
-
                   // drawerItem(context, Icons.logout, "Logout", "/login"),
                   ListTile(
                     leading: Icon(Icons.logout, color: Colors.white),
@@ -119,16 +116,16 @@ class AppDrawer extends  ConsumerWidget {
                     },
                     hoverColor: Colors.white10,
                   ),
-
                   ListTile(
                     title: Text("Privacy Policy"),
                     onTap: () {
                       launchUrl(Uri.parse("https://github.com/syedmunib616/job_tracker/blob/main/Privacy%20Policy"));
                     },
-                  )
+                  ),
                 ],
               ),
             ),
+
           ],
         ),
       ),

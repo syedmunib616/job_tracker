@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_tracker/core/widget/app_loader.dart';
+import 'package:job_tracker/core/widget/button.dart';
 import 'package:job_tracker/core/widget/drawer.dart';
 import 'package:job_tracker/features/employment/models/employment_model.dart';
 import '../view_models/employment_view_model.dart';
@@ -35,6 +36,8 @@ class _EmploymentFormViewState
 
   @override
   Widget build(BuildContext context) {
+    final w=MediaQuery.of(context).size.width;
+
     final loading =
     ref.watch(employmentViewModelProvider);
 
@@ -100,9 +103,11 @@ class _EmploymentFormViewState
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
+            AppButton(
+              width: w*0.46,
+              text: 'Save',
               onPressed: loading
-                  ? null
+                  ? (){}
                   : () async {
                 if (companyController.text.isEmpty ||
                     startDate == null) return;
@@ -131,12 +136,45 @@ class _EmploymentFormViewState
 
                 Navigator.pop(context);
               },
-              child: loading
-                  ? const AppLoader()
-                  : Text(widget.employment == null
-                  ? "Save"
-                  : "Update"),
-            )
+              icon: Icons.save,
+            ),
+            // ElevatedButton(
+            //   onPressed: loading
+            //       ? null
+            //       : () async {
+            //     if (companyController.text.isEmpty ||
+            //         startDate == null) return;
+            //
+            //     final employment = EmploymentModel(
+            //       id: widget.employment?.id ?? "",
+            //       companyName:
+            //       companyController.text,
+            //       startDate: startDate!,
+            //       endDate: endDate,
+            //     );
+            //
+            //     if (widget.employment == null) {
+            //       await ref
+            //           .read(
+            //           employmentViewModelProvider
+            //               .notifier)
+            //           .addEmployment(employment);
+            //     } else {
+            //       await ref
+            //           .read(
+            //           employmentViewModelProvider
+            //               .notifier)
+            //           .updateEmployment(employment);
+            //     }
+            //
+            //     Navigator.pop(context);
+            //   },
+            //   child: loading
+            //       ? const AppLoader()
+            //       : Text(widget.employment == null
+            //       ? "Save"
+            //       : "Update"),
+            // )
           ],
         ),
       ),
