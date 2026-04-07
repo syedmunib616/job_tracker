@@ -23,16 +23,16 @@ The application includes:
 
 ## 📱 App Screenshots
 
-| Login | Dashboard |
-|------|------|
+| AI                                 | Dashboard |
+|------------------------------------|------|
 | ![](screenshots/ai_screenshot.png) | ![](screenshots/dashboard.png) |
 
 | Dashboard Opt                   | Navigation Drawer |
 |---------------------------------|------|
 | ![](screenshots/dashboard2.png) | ![](screenshots/drawer.png) |
 
-| Employment Tracker       | Job Applications |
-|--------------------------|------------------|
+| Resumes                  | Employment              |
+|--------------------------|--------------------------|
 | ![](screenshots/222.png) | ![](screenshots/333.png) |
 
 
