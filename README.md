@@ -25,14 +25,15 @@ The application includes:
 
 | Login | Dashboard |
 |------|------|
-| ![](screenshots/login.png) | ![](screenshots/dashboard.png) |
+| ![](screenshots/ai_screenshot.png) | ![](screenshots/dashboard.png) |
 
 | Dashboard Opt                   | Navigation Drawer |
 |---------------------------------|------|
 | ![](screenshots/dashboard2.png) | ![](screenshots/drawer.png) |
 
-| Employment Tracker | Job Applications |
-|------|------|
+| Employment Tracker       | Job Applications |
+|--------------------------|------------------|
+| ![](screenshots/222.png) | ![](screenshots/333.png) |
 
 
 # ✨ Features
